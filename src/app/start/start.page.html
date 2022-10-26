@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="danger">
+      <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <br>
+  <br><br>
+  <br><br>
+  <ion-grid>
+      <ion-row>
+          <ion-col>
+              <ion-card color="primary" (click)="servicio.irA('/inicio-cliente')">
+                  <ion-card-content>
+                      <ion-icon name="people-outline"></ion-icon>
+                  </ion-card-content>
+                  <ion-card-header>
+                      <ion-card-title>Zona Clientes</ion-card-title>
+                  </ion-card-header>
+              </ion-card>
+          </ion-col>
+         
+      </ion-row>
+      <ion-col>
+          <ion-card color="dark" (click)="servicio.irA('/inicio')">
+              <ion-card-content>
+                  <ion-icon name="people-circle-outline"></ion-icon>
+              </ion-card-content>
+              <ion-card-header>
+                  <ion-card-title>Zona Admin</ion-card-title>
+              </ion-card-header>
+          </ion-card>
+      </ion-col>
+      <ion-row>
+      </ion-row>
+  </ion-grid>
+</ion-content>

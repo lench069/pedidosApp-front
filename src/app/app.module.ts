@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Camera } from '@ionic-native/camera/ngx';
 import { Push } from '@ionic-native/push/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
   imports: [
     BrowserModule,
     HttpClientModule,
+    IonicStorageModule.forRoot(), 
     IonicModule.forRoot(),
     AppRoutingModule
   ],

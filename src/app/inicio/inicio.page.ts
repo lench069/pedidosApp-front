@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from '../servicios.service';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-inicio',
@@ -13,11 +14,15 @@ export class InicioPage implements OnInit {
   public productos: number = 0;
   public clientes: number = 0;
   public usuarios: number = 0;
+  public userLogeado;
 
   constructor(
     public servicio: ServiciosService,
-    public apermisos: AndroidPermissions
-  ) { }
+    public apermisos: AndroidPermissions,
+    private storage: Storage
+  ) { 
+    
+  }
 
   ionViewWillEnter() {
     this.servicio.Obtener_Totales()
@@ -38,6 +43,7 @@ export class InicioPage implements OnInit {
 
     });
     this.servicio.Inicializar_Notificacion();
+    
   }
 
 }

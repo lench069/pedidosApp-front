@@ -1,9 +1,9 @@
 <ion-header>
     <ion-toolbar color="danger">
         <ion-buttons slot="start">
-            <ion-back-button text="" defaultHref="start"></ion-back-button>
+            <ion-back-button text="" defaultHref="start" (click)="servicio.irA('/start')"></ion-back-button>
           </ion-buttons>
-        <ion-title>Inventario App</ion-title>
+        <ion-title>Admin APP</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -56,5 +56,10 @@
                 </ion-card>
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid>   
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+      
+    </ion-toolbar>
+  </ion-footer>

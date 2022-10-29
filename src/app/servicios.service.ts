@@ -24,6 +24,17 @@ export class ServiciosService {
     this.router.navigateByUrl(url);
   }
 
+  //***********************Login******************************************/
+  Login(data:any) {
+    return this.http.post(
+      this.URL_API + 'login-usuario', 
+      this.objectToFormData({
+        usuario: data.usuario,
+        clave: data.clave,
+      }) 
+      );
+  }
+
   Obtener_Totales() {
     return this.http.post(this.URL_API + 'obtener-totales', {});
   }
@@ -112,9 +123,7 @@ export class ServiciosService {
       nombre: data.nombre,
       telefono: data.telefono,
       correo: data.correo,
-      direccion: data.direccion,
-      ciudad: data.ciudad,
-      pais: data.pais
+      direccion: data.direccion
     }));
   }
   /* Fin: Usuarios */

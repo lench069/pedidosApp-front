@@ -16,8 +16,6 @@ export class ClientePage implements OnInit {
   public telefono: string = '';
   public correo: string = '';
   public direccion: string = '';
-  public ciudad: string = '';
-  public pais: string = '';
 
   constructor(
     public servicio: ServiciosService,
@@ -40,8 +38,6 @@ export class ClientePage implements OnInit {
             this.telefono = data.info.item.telefono;
             this.correo = data.info.item.correo;
             this.direccion = data.info.item.direccion;
-            this.ciudad = data.info.item.ciudad;
-            this.pais = data.info.item.pais;
           } else {
             this.servicio.Mensaje('El cliente que intenta consultar no existe.', 'danger');
             this.servicio.irA('/clientes');
@@ -68,11 +64,7 @@ export class ClientePage implements OnInit {
       this.servicio.Mensaje('Debe ingresar el correo.', 'warning');
     } else if (this.direccion == '') {
       this.servicio.Mensaje('Debe ingresar la dirección.', 'warning');
-    } else if (this.pais == '') {
-      this.servicio.Mensaje('Debe ingresar el país.', 'warning');
-    } else if (this.ciudad == '') {
-      this.servicio.Mensaje('Debe ingresar la ciudad.', 'warning');
-    } else {
+    }  else {
       let l = await this.loading.create();
       l.present();
       this.servicio.Cliente_Guardar({
@@ -81,9 +73,7 @@ export class ClientePage implements OnInit {
         nombre: this.nombre,
         telefono: this.telefono,
         correo: this.correo,
-        direccion: this.direccion,
-        pais: this.pais,
-        ciudad: this.ciudad,
+        direccion: this.direccion
       }).subscribe((data: any) => {
         l.dismiss();
         this.servicio.Mensaje(data.mensaje, data.info.id == 0 ? 'danger' : 'success');

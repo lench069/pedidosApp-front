@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"success\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" defaultHref=\"productos\"></ion-back-button>\n    </ion-buttons>\n    <ion-title size=\"small\">{{id == 0 ? 'Nuevo' : 'Editar'}} producto {{id == 0 ? '' : id}}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"Guardar()\">\n        <ion-icon name=\"save\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item>\n      <ion-label position=\"stacked\">Código</ion-label>\n      <ion-input [(ngModel)]=\"codigo\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Nombre</ion-label>\n      <ion-input [(ngModel)]=\"nombre\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Stock</ion-label>\n      <ion-input type=\"number\" [(ngModel)]=\"stock\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Precio</ion-label>\n      <ion-input type=\"number\" [(ngModel)]=\"precio\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Activo</ion-label>\n      <ion-toggle slot=\"end\" [(ngModel)]=\"activo\"></ion-toggle>\n    </ion-item>\n    <ion-item>\n      <ion-button slot=\"start\" fill=\"outline\" (click)=\"Capturar_Foto()\">\n        <ion-icon name=\"camera-outline\"></ion-icon>\n      </ion-button>\n      <ion-label>\n        <h3>Foto</h3>\n        <img *ngIf=\"imagen != null\" [src]=\"imagen\" />\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"success\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" defaultHref=\"productos\"></ion-back-button>\n    </ion-buttons>\n    <ion-title size=\"small\">{{id == 0 ? 'Nuevo' : 'Editar'}} producto {{id == 0 ? '' : id}}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"Guardar()\">\n        <ion-icon name=\"save\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item>\n      <ion-label position=\"stacked\">Código</ion-label>\n      <ion-input [(ngModel)]=\"codigo\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Nombre</ion-label>\n      <ion-input [(ngModel)]=\"nombre\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Descripcion</ion-label>\n      <ion-input [(ngModel)]=\"descripcion\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Categoria</ion-label>\n      <ion-select class=\"custom-options\" interface=\"popover\" [(ngModel)]=\"id_categoria\"  placeholder='Seleccione..'>\n        <ion-select-option *ngFor=\"let categoria of categorias\" value=\"{{ categoria.id}}\">\n            {{ categoria.nombre }}\n        </ion-select-option>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Stock</ion-label>\n      <ion-input type=\"number\" [(ngModel)]=\"stock\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Precio</ion-label>\n      <ion-input type=\"number\" [(ngModel)]=\"precio\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Activo</ion-label>\n      <ion-toggle slot=\"end\" [(ngModel)]=\"activo\"></ion-toggle>\n    </ion-item>\n    <ion-item>\n      <ion-button slot=\"start\" fill=\"outline\" (click)=\"Capturar_Foto()\">\n        <ion-icon name=\"camera-outline\"></ion-icon>\n      </ion-button>\n      <ion-label>\n        <h3>Foto</h3>\n        <img *ngIf=\"imagen != null\" [src]=\"imagen\" />\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>");
 
 /***/ }),
 
@@ -136,14 +136,19 @@ let ProductoPage = class ProductoPage {
         this.id = 0;
         this.codigo = '';
         this.nombre = '';
+        this.descripcion = '';
         this.stock = 0;
         this.precio = 0;
         this.activo = true;
         this.imagen = null;
+        this.id_provincia = 0;
+        this.categorias = [];
+        this.id_categoria = 0;
         this.id = this.route.snapshot.params.productoId ? this.route.snapshot.params.productoId : 0;
     }
     ionViewWillEnter() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.Cargar_Categorias();
             if (this.id > 0) {
                 let l = yield this.loading.create();
                 l.present();
@@ -170,13 +175,32 @@ let ProductoPage = class ProductoPage {
     }
     ngOnInit() {
     }
+    Cargar_Categorias() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            let l = yield this.loading.create();
+            l.present();
+            this.servicio.Categorias_Listado()
+                .subscribe((data) => {
+                this.categorias = data.info.items;
+                l.dismiss();
+            }, (error) => {
+                l.dismiss();
+            });
+        });
+    }
     Guardar() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             if (this.codigo == '') {
                 this.servicio.Mensaje('Debe ingresar el código.', 'warning');
             }
+            else if (this.id_categoria == 0) {
+                this.servicio.Mensaje('Debe seleccionar una categoria.', 'warning');
+            }
             else if (this.nombre == '') {
                 this.servicio.Mensaje('Debe ingresar el nombre.', 'warning');
+            }
+            else if (this.descripcion == '') {
+                this.servicio.Mensaje('Debe ingresar una descripcion.', 'warning');
             }
             else if (this.stock == 0) {
                 this.servicio.Mensaje('Debe ingresar el stock.', 'warning');
@@ -191,6 +215,8 @@ let ProductoPage = class ProductoPage {
                     id: this.id,
                     codigo: this.codigo,
                     nombre: this.nombre,
+                    descripcion: this.descripcion,
+                    id_categoria: this.id_categoria,
                     stock: this.stock,
                     precio: this.precio,
                     activo: this.activo ? 1 : 0,

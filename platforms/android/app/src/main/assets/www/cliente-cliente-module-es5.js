@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" defaultHref=\"usuarios\"></ion-back-button>\n    </ion-buttons>\n    <ion-title size=\"small\">{{id == 0 ? 'Nuevo' : 'Editar'}} cliente {{id == 0 ? '' : id}}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"Guardar()\">\n        <ion-icon name=\"save\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item>\n      <ion-label position=\"stacked\">Identificación</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"identificacion\" [disabled]=\"id != 0\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Nombre</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"nombre\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Teléfono</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"telefono\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Correo</ion-label>\n      <ion-input type=\"email\" [(ngModel)]=\"correo\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Dirección</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"direccion\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Ciudad</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"ciudad\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">País</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"pais\"></ion-input>\n    </ion-item>\n  </ion-list>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" defaultHref=\"usuarios\"></ion-back-button>\n    </ion-buttons>\n    <ion-title size=\"small\">{{id == 0 ? 'Nuevo' : 'Editar'}} cliente {{id == 0 ? '' : id}}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"Guardar()\">\n        <ion-icon name=\"save\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item>\n      <ion-label position=\"stacked\">Identificación</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"identificacion\" [disabled]=\"id != 0\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Nombre</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"nombre\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Teléfono</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"telefono\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Correo</ion-label>\n      <ion-input type=\"email\" [(ngModel)]=\"correo\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Dirección</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"direccion\"></ion-input>\n    </ion-item>\n  </ion-list>\n</ion-content>";
     /***/
   },
 
@@ -241,8 +241,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.telefono = '';
         this.correo = '';
         this.direccion = '';
-        this.ciudad = '';
-        this.pais = '';
         this.id = this.route.snapshot.params.clienteId ? this.route.snapshot.params.clienteId : 0;
       }
 
@@ -277,8 +275,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         _this.telefono = data.info.item.telefono;
                         _this.correo = data.info.item.correo;
                         _this.direccion = data.info.item.direccion;
-                        _this.ciudad = data.info.item.ciudad;
-                        _this.pais = data.info.item.pais;
                       } else {
                         _this.servicio.Mensaje('El cliente que intenta consultar no existe.', 'danger');
 
@@ -320,7 +316,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     this.servicio.Mensaje('Debe ingresar la identificación.', 'warning');
-                    _context2.next = 33;
+                    _context2.next = 25;
                     break;
 
                   case 4:
@@ -330,7 +326,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     this.servicio.Mensaje('Debe ingresar el nombre.', 'warning');
-                    _context2.next = 33;
+                    _context2.next = 25;
                     break;
 
                   case 8:
@@ -340,7 +336,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     this.servicio.Mensaje('Debe ingresar el telefono.', 'warning');
-                    _context2.next = 33;
+                    _context2.next = 25;
                     break;
 
                   case 12:
@@ -350,7 +346,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     this.servicio.Mensaje('Debe ingresar el correo.', 'warning');
-                    _context2.next = 33;
+                    _context2.next = 25;
                     break;
 
                   case 16:
@@ -360,34 +356,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     this.servicio.Mensaje('Debe ingresar la dirección.', 'warning');
-                    _context2.next = 33;
+                    _context2.next = 25;
                     break;
 
                   case 20:
-                    if (!(this.pais == '')) {
-                      _context2.next = 24;
-                      break;
-                    }
-
-                    this.servicio.Mensaje('Debe ingresar el país.', 'warning');
-                    _context2.next = 33;
-                    break;
-
-                  case 24:
-                    if (!(this.ciudad == '')) {
-                      _context2.next = 28;
-                      break;
-                    }
-
-                    this.servicio.Mensaje('Debe ingresar la ciudad.', 'warning');
-                    _context2.next = 33;
-                    break;
-
-                  case 28:
-                    _context2.next = 30;
+                    _context2.next = 22;
                     return this.loading.create();
 
-                  case 30:
+                  case 22:
                     l = _context2.sent;
                     l.present();
                     this.servicio.Cliente_Guardar({
@@ -396,9 +372,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       nombre: this.nombre,
                       telefono: this.telefono,
                       correo: this.correo,
-                      direccion: this.direccion,
-                      pais: this.pais,
-                      ciudad: this.ciudad
+                      direccion: this.direccion
                     }).subscribe(function (data) {
                       l.dismiss();
 
@@ -413,7 +387,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       _this2.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
                     });
 
-                  case 33:
+                  case 25:
                   case "end":
                     return _context2.stop();
                 }

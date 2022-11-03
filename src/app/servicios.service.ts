@@ -61,10 +61,12 @@ export class ServiciosService {
       id: data.id,
       codigo: data.codigo,
       nombre: data.nombre,
+      descripcion: data.descripcion,
       stock: data.stock,
       precio: data.precio,
       activo: data.activo,
       imagen: data.imagen,
+      id_categoria: data.id_categoria
     }));
   }
   /* Fin: Productos */
@@ -259,4 +261,9 @@ export class ServiciosService {
     }
     return fd;
   };
+
+  Categorias_Listado() {
+    return this.http.post(this.URL_API + 'listado-categoria', this.objectToFormData({
+    }));
+  }
 }

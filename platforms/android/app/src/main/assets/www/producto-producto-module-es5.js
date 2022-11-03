@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"success\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" defaultHref=\"productos\"></ion-back-button>\n    </ion-buttons>\n    <ion-title size=\"small\">{{id == 0 ? 'Nuevo' : 'Editar'}} producto {{id == 0 ? '' : id}}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"Guardar()\">\n        <ion-icon name=\"save\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item>\n      <ion-label position=\"stacked\">Código</ion-label>\n      <ion-input [(ngModel)]=\"codigo\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Nombre</ion-label>\n      <ion-input [(ngModel)]=\"nombre\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Stock</ion-label>\n      <ion-input type=\"number\" [(ngModel)]=\"stock\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Precio</ion-label>\n      <ion-input type=\"number\" [(ngModel)]=\"precio\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Activo</ion-label>\n      <ion-toggle slot=\"end\" [(ngModel)]=\"activo\"></ion-toggle>\n    </ion-item>\n    <ion-item>\n      <ion-button slot=\"start\" fill=\"outline\" (click)=\"Capturar_Foto()\">\n        <ion-icon name=\"camera-outline\"></ion-icon>\n      </ion-button>\n      <ion-label>\n        <h3>Foto</h3>\n        <img *ngIf=\"imagen != null\" [src]=\"imagen\" />\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"success\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" defaultHref=\"productos\"></ion-back-button>\n    </ion-buttons>\n    <ion-title size=\"small\">{{id == 0 ? 'Nuevo' : 'Editar'}} producto {{id == 0 ? '' : id}}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"Guardar()\">\n        <ion-icon name=\"save\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item>\n      <ion-label position=\"stacked\">Código</ion-label>\n      <ion-input [(ngModel)]=\"codigo\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Nombre</ion-label>\n      <ion-input [(ngModel)]=\"nombre\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Descripcion</ion-label>\n      <ion-input [(ngModel)]=\"descripcion\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Categoria</ion-label>\n      <ion-select class=\"custom-options\" interface=\"popover\" [(ngModel)]=\"id_categoria\"  placeholder='Seleccione..'>\n        <ion-select-option *ngFor=\"let categoria of categorias\" value=\"{{ categoria.id}}\">\n            {{ categoria.nombre }}\n        </ion-select-option>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Stock</ion-label>\n      <ion-input type=\"number\" [(ngModel)]=\"stock\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Precio</ion-label>\n      <ion-input type=\"number\" [(ngModel)]=\"precio\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Activo</ion-label>\n      <ion-toggle slot=\"end\" [(ngModel)]=\"activo\"></ion-toggle>\n    </ion-item>\n    <ion-item>\n      <ion-button slot=\"start\" fill=\"outline\" (click)=\"Capturar_Foto()\">\n        <ion-icon name=\"camera-outline\"></ion-icon>\n      </ion-button>\n      <ion-label>\n        <h3>Foto</h3>\n        <img *ngIf=\"imagen != null\" [src]=\"imagen\" />\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>";
     /***/
   },
 
@@ -245,10 +245,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.id = 0;
         this.codigo = '';
         this.nombre = '';
+        this.descripcion = '';
         this.stock = 0;
         this.precio = 0;
         this.activo = true;
         this.imagen = null;
+        this.id_provincia = 0;
+        this.categorias = [];
+        this.id_categoria = 0;
         this.id = this.route.snapshot.params.productoId ? this.route.snapshot.params.productoId : 0;
       }
 
@@ -263,15 +267,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
+                    this.Cargar_Categorias();
+
                     if (!(this.id > 0)) {
-                      _context.next = 6;
+                      _context.next = 7;
                       break;
                     }
 
-                    _context.next = 3;
+                    _context.next = 4;
                     return this.loading.create();
 
-                  case 3:
+                  case 4:
                     l = _context.sent;
                     l.present();
                     this.servicio.Producto_Consulta(this.id).subscribe(function (data) {
@@ -295,7 +301,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       _this.servicio.irA('/productos');
                     });
 
-                  case 6:
+                  case 7:
                   case "end":
                     return _context.stop();
                 }
@@ -307,8 +313,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ngOnInit",
         value: function ngOnInit() {}
       }, {
-        key: "Guardar",
-        value: function Guardar() {
+        key: "Cargar_Categorias",
+        value: function Cargar_Categorias() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
             var _this2 = this;
 
@@ -317,75 +323,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context2.prev = _context2.next) {
                   case 0:
-                    if (!(this.codigo == '')) {
-                      _context2.next = 4;
-                      break;
-                    }
-
-                    this.servicio.Mensaje('Debe ingresar el código.', 'warning');
-                    _context2.next = 21;
-                    break;
-
-                  case 4:
-                    if (!(this.nombre == '')) {
-                      _context2.next = 8;
-                      break;
-                    }
-
-                    this.servicio.Mensaje('Debe ingresar el nombre.', 'warning');
-                    _context2.next = 21;
-                    break;
-
-                  case 8:
-                    if (!(this.stock == 0)) {
-                      _context2.next = 12;
-                      break;
-                    }
-
-                    this.servicio.Mensaje('Debe ingresar el stock.', 'warning');
-                    _context2.next = 21;
-                    break;
-
-                  case 12:
-                    if (!(this.precio == 0)) {
-                      _context2.next = 16;
-                      break;
-                    }
-
-                    this.servicio.Mensaje('Debe ingresar el precio.', 'warning');
-                    _context2.next = 21;
-                    break;
-
-                  case 16:
-                    _context2.next = 18;
+                    _context2.next = 2;
                     return this.loading.create();
 
-                  case 18:
+                  case 2:
                     l = _context2.sent;
                     l.present();
-                    this.servicio.Producto_Guardar({
-                      id: this.id,
-                      codigo: this.codigo,
-                      nombre: this.nombre,
-                      stock: this.stock,
-                      precio: this.precio,
-                      activo: this.activo ? 1 : 0,
-                      imagen: this.imagen
-                    }).subscribe(function (data) {
+                    this.servicio.Categorias_Listado().subscribe(function (data) {
+                      _this2.categorias = data.info.items;
                       l.dismiss();
-
-                      _this2.servicio.Mensaje(data.mensaje, data.info.id == 0 ? 'danger' : 'success');
-
-                      if (data.info.id > 0) {
-                        _this2.servicio.irA('/productos');
-                      }
-                    }, function (_) {
+                    }, function (error) {
                       l.dismiss();
-
-                      _this2.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
                     });
 
-                  case 21:
+                  case 5:
                   case "end":
                     return _context2.stop();
                 }
@@ -394,9 +345,118 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         }
       }, {
+        key: "Guardar",
+        value: function Guardar() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            var _this3 = this;
+
+            var l;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    if (!(this.codigo == '')) {
+                      _context3.next = 4;
+                      break;
+                    }
+
+                    this.servicio.Mensaje('Debe ingresar el código.', 'warning');
+                    _context3.next = 29;
+                    break;
+
+                  case 4:
+                    if (!(this.id_categoria == 0)) {
+                      _context3.next = 8;
+                      break;
+                    }
+
+                    this.servicio.Mensaje('Debe seleccionar una categoria.', 'warning');
+                    _context3.next = 29;
+                    break;
+
+                  case 8:
+                    if (!(this.nombre == '')) {
+                      _context3.next = 12;
+                      break;
+                    }
+
+                    this.servicio.Mensaje('Debe ingresar el nombre.', 'warning');
+                    _context3.next = 29;
+                    break;
+
+                  case 12:
+                    if (!(this.descripcion == '')) {
+                      _context3.next = 16;
+                      break;
+                    }
+
+                    this.servicio.Mensaje('Debe ingresar una descripcion.', 'warning');
+                    _context3.next = 29;
+                    break;
+
+                  case 16:
+                    if (!(this.stock == 0)) {
+                      _context3.next = 20;
+                      break;
+                    }
+
+                    this.servicio.Mensaje('Debe ingresar el stock.', 'warning');
+                    _context3.next = 29;
+                    break;
+
+                  case 20:
+                    if (!(this.precio == 0)) {
+                      _context3.next = 24;
+                      break;
+                    }
+
+                    this.servicio.Mensaje('Debe ingresar el precio.', 'warning');
+                    _context3.next = 29;
+                    break;
+
+                  case 24:
+                    _context3.next = 26;
+                    return this.loading.create();
+
+                  case 26:
+                    l = _context3.sent;
+                    l.present();
+                    this.servicio.Producto_Guardar({
+                      id: this.id,
+                      codigo: this.codigo,
+                      nombre: this.nombre,
+                      descripcion: this.descripcion,
+                      id_categoria: this.id_categoria,
+                      stock: this.stock,
+                      precio: this.precio,
+                      activo: this.activo ? 1 : 0,
+                      imagen: this.imagen
+                    }).subscribe(function (data) {
+                      l.dismiss();
+
+                      _this3.servicio.Mensaje(data.mensaje, data.info.id == 0 ? 'danger' : 'success');
+
+                      if (data.info.id > 0) {
+                        _this3.servicio.irA('/productos');
+                      }
+                    }, function (_) {
+                      l.dismiss();
+
+                      _this3.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+                    });
+
+                  case 29:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+        }
+      }, {
         key: "Capturar_Foto",
         value: function Capturar_Foto() {
-          var _this3 = this;
+          var _this4 = this;
 
           this.camara.getPicture({
             quality: 60,
@@ -407,9 +467,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             encodingType: this.camara.EncodingType.JPEG,
             mediaType: this.camara.MediaType.PICTURE
           }).then(function (imageData) {
-            _this3.imagen = 'data:image/jpeg;base64,' + imageData;
+            _this4.imagen = 'data:image/jpeg;base64,' + imageData;
           }, function (err) {
-            _this3.servicio.Mensaje('No capturó ninguna imagen.', 'danger');
+            _this4.servicio.Mensaje('No capturó ninguna imagen.', 'danger');
           });
         }
       }]);

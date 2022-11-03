@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar color=\"danger\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button text=\"\" defaultHref=\"start\"></ion-back-button>\n          </ion-buttons>\n        <ion-title>Inventario App</ion-title>\n    </ion-toolbar>\n</ion-header>\n<ion-content>\n    <ion-grid>\n        <ion-row>\n            <ion-col>\n                <ion-card color=\"primary\" (click)=\"servicio.irA('/clientes')\">\n                    <ion-card-content>\n                        <ion-icon name=\"people-outline\"></ion-icon>\n                    </ion-card-content>\n                    <ion-card-header>\n                        <ion-card-title>Clientes</ion-card-title>\n                        <ion-card-subtitle>({{clientes}})</ion-card-subtitle>\n                    </ion-card-header>\n                </ion-card>\n            </ion-col>\n            <ion-col>\n                <ion-card color=\"success\" (click)=\"servicio.irA('/productos')\">\n                    <ion-card-content>\n                        <ion-icon name=\"pricetags-outline\"></ion-icon>\n                    </ion-card-content>\n                    <ion-card-header>\n                        <ion-card-title>Productos</ion-card-title>\n                        <ion-card-subtitle>({{productos}})</ion-card-subtitle>\n                    </ion-card-header>\n                </ion-card>\n            </ion-col>\n        </ion-row>\n        <ion-row>\n            <ion-col>\n                <ion-card color=\"warning\" (click)=\"servicio.irA('/pedidos')\">\n                    <ion-card-content>\n                        <ion-icon name=\"cart-outline\"></ion-icon>\n                    </ion-card-content>\n                    <ion-card-header>\n                        <ion-card-title>Pedidos</ion-card-title>\n                        <ion-card-subtitle>({{pedidos}})</ion-card-subtitle>\n                    </ion-card-header>\n                </ion-card>\n            </ion-col>\n            <ion-col>\n                <ion-card color=\"dark\" (click)=\"servicio.irA('/usuarios')\">\n                    <ion-card-content>\n                        <ion-icon name=\"people-circle-outline\"></ion-icon>\n                    </ion-card-content>\n                    <ion-card-header>\n                        <ion-card-title>Usuarios</ion-card-title>\n                        <ion-card-subtitle>({{usuarios}})</ion-card-subtitle>\n                    </ion-card-header>\n                </ion-card>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar color=\"danger\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button text=\"\" defaultHref=\"start\" (click)=\"servicio.irA('/start')\"></ion-back-button>\n          </ion-buttons>\n        <ion-title>Admin APP</ion-title>\n    </ion-toolbar>\n</ion-header>\n<ion-content>\n    <ion-grid>\n        <ion-row>\n            <ion-col>\n                <ion-card color=\"primary\" (click)=\"servicio.irA('/clientes')\">\n                    <ion-card-content>\n                        <ion-icon name=\"people-outline\"></ion-icon>\n                    </ion-card-content>\n                    <ion-card-header>\n                        <ion-card-title>Clientes</ion-card-title>\n                        <ion-card-subtitle>({{clientes}})</ion-card-subtitle>\n                    </ion-card-header>\n                </ion-card>\n            </ion-col>\n            <ion-col>\n                <ion-card color=\"success\" (click)=\"servicio.irA('/productos')\">\n                    <ion-card-content>\n                        <ion-icon name=\"pricetags-outline\"></ion-icon>\n                    </ion-card-content>\n                    <ion-card-header>\n                        <ion-card-title>Productos</ion-card-title>\n                        <ion-card-subtitle>({{productos}})</ion-card-subtitle>\n                    </ion-card-header>\n                </ion-card>\n            </ion-col>\n        </ion-row>\n        <ion-row>\n            <ion-col>\n                <ion-card color=\"warning\" (click)=\"servicio.irA('/pedidos')\">\n                    <ion-card-content>\n                        <ion-icon name=\"cart-outline\"></ion-icon>\n                    </ion-card-content>\n                    <ion-card-header>\n                        <ion-card-title>Pedidos</ion-card-title>\n                        <ion-card-subtitle>({{pedidos}})</ion-card-subtitle>\n                    </ion-card-header>\n                </ion-card>\n            </ion-col>\n            <ion-col>\n                <ion-card color=\"dark\" (click)=\"servicio.irA('/usuarios')\">\n                    <ion-card-content>\n                        <ion-icon name=\"people-circle-outline\"></ion-icon>\n                    </ion-card-content>\n                    <ion-card-header>\n                        <ion-card-title>Usuarios</ion-card-title>\n                        <ion-card-subtitle>({{usuarios}})</ion-card-subtitle>\n                    </ion-card-header>\n                </ion-card>\n            </ion-col>\n        </ion-row>\n    </ion-grid>   \n</ion-content>\n<ion-footer>\n    <ion-toolbar>\n      \n    </ion-toolbar>\n  </ion-footer>");
 
 /***/ }),
 
@@ -119,14 +119,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _servicios_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../servicios.service */ "./src/app/servicios.service.ts");
 /* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ "./node_modules/@ionic-native/android-permissions/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/storage-angular */ "./node_modules/@ionic/storage-angular/__ivy_ngcc__/fesm2015/ionic-storage-angular.js");
+
 
 
 
 
 let InicioPage = class InicioPage {
-    constructor(servicio, apermisos) {
+    constructor(servicio, apermisos, storage) {
         this.servicio = servicio;
         this.apermisos = apermisos;
+        this.storage = storage;
         this.pedidos = 0;
         this.productos = 0;
         this.clientes = 0;
@@ -153,7 +156,8 @@ let InicioPage = class InicioPage {
 };
 InicioPage.ctorParameters = () => [
     { type: _servicios_service__WEBPACK_IMPORTED_MODULE_2__["ServiciosService"] },
-    { type: _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_3__["AndroidPermissions"] }
+    { type: _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_3__["AndroidPermissions"] },
+    { type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_4__["Storage"] }
 ];
 InicioPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

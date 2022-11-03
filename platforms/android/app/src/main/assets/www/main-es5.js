@@ -210,7 +210,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var routes = [{
       path: '',
-      redirectTo: 'inicio',
+      redirectTo: 'start',
       pathMatch: 'full'
     }, {
       path: 'folder/:id',
@@ -629,6 +629,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! @ionic-native/android-permissions/ngx */
     "./node_modules/@ionic-native/android-permissions/__ivy_ngcc__/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    /*! @ionic/storage-angular */
+    "./node_modules/@ionic/storage-angular/__ivy_ngcc__/fesm2015/ionic-storage-angular.js");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
@@ -637,7 +643,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
       entryComponents: [],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"]],
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"], _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_14__["IonicStorageModule"].forRoot(), _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"]],
       providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__["Camera"], _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_12__["Push"], _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_13__["AndroidPermissions"], _servicios_service__WEBPACK_IMPORTED_MODULE_9__["ServiciosService"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
@@ -719,6 +725,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "irA",
         value: function irA(url) {
           this.router.navigateByUrl(url);
+        } //***********************Login******************************************/
+
+      }, {
+        key: "Login",
+        value: function Login(data) {
+          return this.http.post(this.URL_API + 'login-usuario', this.objectToFormData({
+            usuario: data.usuario,
+            clave: data.clave
+          }));
         }
       }, {
         key: "Obtener_Totales",
@@ -755,10 +770,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             id: data.id,
             codigo: data.codigo,
             nombre: data.nombre,
+            descripcion: data.descripcion,
             stock: data.stock,
             precio: data.precio,
             activo: data.activo,
-            imagen: data.imagen
+            imagen: data.imagen,
+            id_categoria: data.id_categoria
           }));
         }
         /* Fin: Productos */
@@ -833,9 +850,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             nombre: data.nombre,
             telefono: data.telefono,
             correo: data.correo,
-            direccion: data.direccion,
-            ciudad: data.ciudad,
-            pais: data.pais
+            direccion: data.direccion
           }));
         }
         /* Fin: Usuarios */
@@ -1020,6 +1035,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           return fd;
+        }
+      }, {
+        key: "Categorias_Listado",
+        value: function Categorias_Listado() {
+          return this.http.post(this.URL_API + 'listado-categoria', this.objectToFormData({}));
         }
       }]);
 

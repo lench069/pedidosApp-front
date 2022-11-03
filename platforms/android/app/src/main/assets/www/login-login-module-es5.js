@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>login</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n";
+    __webpack_exports__["default"] = "<ion-header>\r\n  <ion-toolbar color=\"danger\">\r\n      <ion-buttons slot=\"start\">\r\n          <ion-back-button text=\"\" defaultHref=\"start\"></ion-back-button>\r\n        </ion-buttons>\r\n      <ion-title>Login</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content [fullscreen]=\"true\" color=\"fondo\" class=\"vertical-align-content ion-text-center\">\r\n\t<ion-grid >\r\n\t  <ion-row>\r\n\t\t<ion-col class=\"ion-text-center\" size-md=\"6\" size-lg=\"5\" size-xs=\"12\">\r\n\t\t\t<div class=\"logo\">\r\n\t\t\t  <img src=\"./assets/imagenes/logo.jpg\">\r\n\t\t\t</div>\r\n\t\t\t<ion-card>\r\n\t\t\t\t<br>\r\n\t\t\t\t<ion-card  class=\"auth-card ion-margin\">\r\n\t\t\t\t\t<ion-item>\r\n\t\t\t\t\t  <ion-label position=\"floating\">Usuario</ion-label>\r\n\t\t\t\t\t  <ion-input type=\"email\" [(ngModel)]=\"username\" ></ion-input>\r\n\t\t\t\t\t</ion-item>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<ion-item>\r\n\t\t\t\t\t  <ion-label position=\"floating\">Contraseña</ion-label>\r\n\t\t\t\t\t  <ion-input type=\"password\" [(ngModel)]=\"password\"></ion-input>\r\n\t\t\t\t\t</ion-item>\r\n\t\t\t\t  </ion-card>\r\n\t\t\t\t  <br>\r\n\t\t\t\t  <ion-button expand=\"block\" color=\"warning\" (click)=\"prosesLogin()\" class=\"ion-margin-start ion-margin-end ion-margin-bottom\" >\r\n\t\t\t\t\t<b>Iniciar Sesión</b> \r\n\t\t\t\t  </ion-button>\r\n\t\t\t\t  <span class=\"ion-margin\"></span>\r\n\t\t\t\t  <span class=\"ion-margin\"></span>\t\t \r\n\t\t\t\t  <br>\r\n\t\t\t</ion-card>\r\n\t\t\t\r\n\t\t</ion-col>\r\n\t  </ion-row>\r\n\t</ion-grid>\r\n</ion-content>\r\n";
     /***/
   },
 
@@ -212,20 +212,108 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _servicios_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @ionic/storage-angular */
+    "./node_modules/@ionic/storage-angular/__ivy_ngcc__/fesm2015/ionic-storage-angular.js");
+    /* harmony import */
+
+
+    var _servicios_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ../servicios.service */
     "./src/app/servicios.service.ts");
 
     var LoginPage = /*#__PURE__*/function () {
-      function LoginPage(servicio) {
+      function LoginPage(router, storage, toastCtrl, servicio, loading) {
         _classCallCheck(this, LoginPage);
 
+        this.router = router;
+        this.storage = storage;
+        this.toastCtrl = toastCtrl;
         this.servicio = servicio;
+        this.loading = loading;
+        this.username = '';
+        this.password = '';
+        this.storage.create();
       }
 
       _createClass(LoginPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {}
+      }, {
+        key: "prosesLogin",
+        value: function prosesLogin() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this = this;
+
+            var l;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    _context.next = 2;
+                    return this.loading.create();
+
+                  case 2:
+                    l = _context.sent;
+                    //se crea el loading
+                    l.present(); //se muestra el loading
+
+                    if (this.username == '') {
+                      this.servicio.Mensaje('Ingrese su usuario.', 'warning');
+                      l.dismiss(); //quita el loading una vez cargue todo
+                    } else if (this.password == '') {
+                      this.servicio.Mensaje('Ingrese su contraseña.', 'warning');
+                      l.dismiss(); //quita el loading una vez cargue todo
+                    } else {
+                      this.servicio.Login({
+                        usuario: this.username,
+                        clave: this.password
+                      }).subscribe(function (data) {
+                        console.log(data);
+
+                        if (data.mensaje == 'true') {
+                          _this.storage.set('session_storage', data.info.item);
+
+                          l.dismiss(); //quita el loading una vez cargue todo
+
+                          _this.router.navigate(['/inicio']);
+
+                          _this.servicio.Mensaje('Login Succesfully.', 'success');
+
+                          _this.username = "";
+                          _this.password = "";
+                        } else {
+                          _this.servicio.Mensaje(data.mensaje, 'danger');
+
+                          l.dismiss(); //quita el loading una vez cargue todo
+                        }
+                      }, function (error) {
+                        _this.servicio.Mensaje('No se pudo realizar la peticion, compruebe su conexion a internet.', 'danger');
+
+                        l.dismiss(); //quita el loading una vez cargue todo
+                      });
+                    }
+
+                  case 5:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
       }]);
 
       return LoginPage;
@@ -233,7 +321,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     LoginPage.ctorParameters = function () {
       return [{
-        type: _servicios_service__WEBPACK_IMPORTED_MODULE_2__["ServiciosService"]
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_4__["Storage"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]
+      }, {
+        type: _servicios_service__WEBPACK_IMPORTED_MODULE_5__["ServiciosService"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"]
       }];
     };
 

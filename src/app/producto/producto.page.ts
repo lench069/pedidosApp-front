@@ -15,10 +15,14 @@ export class ProductoPage implements OnInit {
   public id: number = 0;
   public codigo: string = '';
   public nombre: string = '';
+  public descripcion: string = '';
   public stock: number = 0;
   public precio: number = 0;
   public activo: boolean = true;
   public imagen: any = null;
+  public id_provincia:number = 0;
+  public categorias: any[] = [];
+  public id_categoria:number = 0;
 
   constructor(
     public servicio: ServiciosService,
@@ -30,6 +34,7 @@ export class ProductoPage implements OnInit {
   }
 
   async ionViewWillEnter() {
+    this.Cargar_Categorias();
     if (this.id > 0) {
       let l = await this.loading.create();
       l.present();
@@ -56,11 +61,27 @@ export class ProductoPage implements OnInit {
   ngOnInit() {
   }
 
+  async Cargar_Categorias() {
+    let l = await this.loading.create();
+    l.present();
+    this.servicio.Categorias_Listado()
+      .subscribe((data: any) => {
+        this.categorias = data.info.items;
+        l.dismiss();
+      }, (error: any) => {
+        l.dismiss();
+      });
+  }
+
   async Guardar() {
     if (this.codigo == '') {
       this.servicio.Mensaje('Debe ingresar el código.', 'warning');
+    }else if(this.id_categoria == 0){
+      this.servicio.Mensaje('Debe seleccionar una categoria.', 'warning');
     } else if (this.nombre == '') {
       this.servicio.Mensaje('Debe ingresar el nombre.', 'warning');
+     } else if (this.descripcion == '') {
+        this.servicio.Mensaje('Debe ingresar una descripcion.', 'warning');
     } else if (this.stock == 0) {
       this.servicio.Mensaje('Debe ingresar el stock.', 'warning');
     } else if (this.precio == 0) {
@@ -72,6 +93,8 @@ export class ProductoPage implements OnInit {
         id: this.id,
         codigo: this.codigo,
         nombre: this.nombre,
+        descripcion: this.descripcion,
+        id_categoria: this.id_categoria,
         stock: this.stock,
         precio: this.precio,
         activo: this.activo ? 1 : 0,

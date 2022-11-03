@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" defaultHref=\"usuarios\"></ion-back-button>\n    </ion-buttons>\n    <ion-title size=\"small\">{{id == 0 ? 'Nuevo' : 'Editar'}} cliente {{id == 0 ? '' : id}}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"Guardar()\">\n        <ion-icon name=\"save\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item>\n      <ion-label position=\"stacked\">Identificación</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"identificacion\" [disabled]=\"id != 0\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Nombre</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"nombre\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Teléfono</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"telefono\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Correo</ion-label>\n      <ion-input type=\"email\" [(ngModel)]=\"correo\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Dirección</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"direccion\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Ciudad</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"ciudad\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">País</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"pais\"></ion-input>\n    </ion-item>\n  </ion-list>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" defaultHref=\"usuarios\"></ion-back-button>\n    </ion-buttons>\n    <ion-title size=\"small\">{{id == 0 ? 'Nuevo' : 'Editar'}} cliente {{id == 0 ? '' : id}}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"Guardar()\">\n        <ion-icon name=\"save\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item>\n      <ion-label position=\"stacked\">Identificación</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"identificacion\" [disabled]=\"id != 0\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Nombre</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"nombre\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Teléfono</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"telefono\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Correo</ion-label>\n      <ion-input type=\"email\" [(ngModel)]=\"correo\"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Dirección</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"direccion\"></ion-input>\n    </ion-item>\n  </ion-list>\n</ion-content>");
 
 /***/ }),
 
@@ -136,8 +136,6 @@ let ClientePage = class ClientePage {
         this.telefono = '';
         this.correo = '';
         this.direccion = '';
-        this.ciudad = '';
-        this.pais = '';
         this.id = this.route.snapshot.params.clienteId ? this.route.snapshot.params.clienteId : 0;
     }
     ionViewWillEnter() {
@@ -154,8 +152,6 @@ let ClientePage = class ClientePage {
                         this.telefono = data.info.item.telefono;
                         this.correo = data.info.item.correo;
                         this.direccion = data.info.item.direccion;
-                        this.ciudad = data.info.item.ciudad;
-                        this.pais = data.info.item.pais;
                     }
                     else {
                         this.servicio.Mensaje('El cliente que intenta consultar no existe.', 'danger');
@@ -188,12 +184,6 @@ let ClientePage = class ClientePage {
             else if (this.direccion == '') {
                 this.servicio.Mensaje('Debe ingresar la dirección.', 'warning');
             }
-            else if (this.pais == '') {
-                this.servicio.Mensaje('Debe ingresar el país.', 'warning');
-            }
-            else if (this.ciudad == '') {
-                this.servicio.Mensaje('Debe ingresar la ciudad.', 'warning');
-            }
             else {
                 let l = yield this.loading.create();
                 l.present();
@@ -203,9 +193,7 @@ let ClientePage = class ClientePage {
                     nombre: this.nombre,
                     telefono: this.telefono,
                     correo: this.correo,
-                    direccion: this.direccion,
-                    pais: this.pais,
-                    ciudad: this.ciudad,
+                    direccion: this.direccion
                 }).subscribe((data) => {
                     l.dismiss();
                     this.servicio.Mensaje(data.mensaje, data.info.id == 0 ? 'danger' : 'success');

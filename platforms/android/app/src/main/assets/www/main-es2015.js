@@ -459,7 +459,7 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        redirectTo: 'inicio',
+        redirectTo: 'start',
         pathMatch: 'full'
     },
     {
@@ -658,6 +658,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/push/ngx */ "./node_modules/@ionic-native/push/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ "./node_modules/@ionic-native/android-permissions/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic/storage-angular */ "./node_modules/@ionic/storage-angular/__ivy_ngcc__/fesm2015/ionic-storage-angular.js");
+
 
 
 
@@ -681,6 +683,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"],
+            _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_14__["IonicStorageModule"].forRoot(),
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"]
         ],
@@ -735,6 +738,13 @@ let ServiciosService = class ServiciosService {
     irA(url) {
         this.router.navigateByUrl(url);
     }
+    //***********************Login******************************************/
+    Login(data) {
+        return this.http.post(this.URL_API + 'login-usuario', this.objectToFormData({
+            usuario: data.usuario,
+            clave: data.clave,
+        }));
+    }
     Obtener_Totales() {
         return this.http.post(this.URL_API + 'obtener-totales', {});
     }
@@ -757,10 +767,12 @@ let ServiciosService = class ServiciosService {
             id: data.id,
             codigo: data.codigo,
             nombre: data.nombre,
+            descripcion: data.descripcion,
             stock: data.stock,
             precio: data.precio,
             activo: data.activo,
             imagen: data.imagen,
+            id_categoria: data.id_categoria
         }));
     }
     /* Fin: Productos */
@@ -811,9 +823,7 @@ let ServiciosService = class ServiciosService {
             nombre: data.nombre,
             telefono: data.telefono,
             correo: data.correo,
-            direccion: data.direccion,
-            ciudad: data.ciudad,
-            pais: data.pais
+            direccion: data.direccion
         }));
     }
     /* Fin: Usuarios */
@@ -938,6 +948,9 @@ let ServiciosService = class ServiciosService {
         return fd;
     }
     ;
+    Categorias_Listado() {
+        return this.http.post(this.URL_API + 'listado-categoria', this.objectToFormData({}));
+    }
 };
 ServiciosService.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },

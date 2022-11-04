@@ -7,9 +7,9 @@
       <h2>Sweet & Salty</h2>
     </ion-label>
     <ion-buttons slot="end">
-      <button ion-button icon-only  (click)="navcart()" class="header-btn-cart">
+      <button ion-button icon-only  (click)="servicio.irA('/carrito')" class="header-btn-cart">
         <ion-icon name="fast-food-outline" style="zoom:2.0;"></ion-icon>
-        <ion-badge class="carts" item-right color="danger">1</ion-badge>
+        <ion-badge class="carts" item-right color="danger">{{pedidolocal!= null ? pedidolocal.length : 0}}</ion-badge>
       </button>
     </ion-buttons>
   </ion-item>
@@ -70,7 +70,7 @@
       <ion-col size="12">
         <ion-slides [options]="options">
 
-          <ion-slide *ngFor="let producto of productos">
+          <ion-slide *ngFor="let producto of productos; let i = index">
             <ion-card class="card">
               <ion-card-content class="ion-text-left">
 
@@ -82,11 +82,11 @@
                 <ion-card-subtitle>{{producto.descripcion}}</ion-card-subtitle>        
                 <ion-item>
                   <ion-badge slot="start" color="success">{{producto.precio | currency}}</ion-badge>                
-                  <ion-button color="warning" (click)="remove(producto)"><ion-icon name="remove-outline"></ion-icon></ion-button> 
+                  <ion-button color="warning" (click)="remove(producto, i)"><ion-icon name="remove-outline"></ion-icon></ion-button> 
                   <ion-input type="number" inputMode="numeric"  [(ngModel)]="producto.cantidad" min="1" max="10" disabled></ion-input>
-                  <ion-button color="warning" (click)="add(producto)"><ion-icon name="add-outline"></ion-icon></ion-button>       
+                  <ion-button color="warning" (click)="add(producto, i)"><ion-icon name="add-outline"></ion-icon></ion-button>       
                 </ion-item>      
-                <ion-item><ion-button fill="outline" color="warning" slot="end">Agregar</ion-button>  </ion-item>    
+                <ion-item><ion-button fill="outline" color="warning" slot="end" (click)="addProducto(producto, i)">Agregar</ion-button>  </ion-item>    
               </ion-card-content>
             </ion-card>
           </ion-slide>

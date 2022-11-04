@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { ServiciosService } from '../servicios.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-inicio-cliente',
@@ -10,6 +11,8 @@ import { ServiciosService } from '../servicios.service';
 export class InicioClientePage implements OnInit {
 
   public cantidad: number = 0; 
+  public pedido: any = [];
+  public pedidolocal: any = [];
 
   options = {
     centeredSlides: true,
@@ -28,15 +31,20 @@ export class InicioClientePage implements OnInit {
 
   constructor(public servicio: ServiciosService,
     public loading: LoadingController,
-    public alert: AlertController) { }
+    public alert: AlertController,
+    private storage: Storage) { 
+      this.storage.create();
+    }
 
   ngOnInit() {
 
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.Cargar_Categorias();
     this.Cargar_Productos();
+    let pedido = await this.storage.get('pedido');
+    this.pedidolocal = pedido != null ? pedido : [];
   }
 
   async Cargar_Categorias() {
@@ -70,15 +78,30 @@ export class InicioClientePage implements OnInit {
       });
   }
 
-  add(producto){
-    if(producto.cantidad < 10){
+  add(producto, i){
+    if(producto.cantidad < 10){   
       producto.cantidad++;
+      this.productos[i]= producto;
+      console.log(this.productos[i]);
     }
     
   }
-  remove(producto){
+  remove(producto, i){
     if(producto.cantidad > 0){
       producto.cantidad--;
+      this.productos[i]= producto;
+    }
+    
+  }
+  addProducto(producto, i){
+    if(producto.cantidad != 0){
+      this.pedidolocal.push(producto);
+      this.storage.set('pedido', this.pedidolocal).then((data:any)=>{
+        producto.cantidad = 0;
+      });
+      this.servicio.Mensaje('Producto agregado correctamente', 'success');     
+    }else{
+      this.servicio.Mensaje('Debe seleccionar una cantidad', 'warning');
     }
     
   }

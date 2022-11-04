@@ -3,12 +3,15 @@
     <ion-buttons slot="start">
       <ion-back-button text="" defaultHref="start"></ion-back-button>
     </ion-buttons>
-    <ion-avatar slot="end">
-      <img src="https://yt3.ggpht.com/a-/AOh14GjThP6xpdHXuwV9tVt7wMvBIytCfvZm4N_BkN1MrA=s288-c-k-c0xffffffff-no-rj-mo">
-    </ion-avatar>
     <ion-label>
       <h2>Sweet & Salty</h2>
     </ion-label>
+    <ion-buttons slot="end">
+      <button ion-button icon-only  (click)="navcart()" class="header-btn-cart">
+        <ion-icon name="fast-food-outline" style="zoom:2.0;"></ion-icon>
+        <ion-badge class="carts" item-right color="danger">1</ion-badge>
+      </button>
+    </ion-buttons>
   </ion-item>
 </ion-header>
 
@@ -78,10 +81,12 @@
                 <ion-card-title class="title">{{producto.nombre}}</ion-card-title>
                 <ion-card-subtitle>{{producto.descripcion}}</ion-card-subtitle>        
                 <ion-item>
-                  <ion-badge slot="start" color="success">{{producto.precio | currency}}</ion-badge>   
-                  <ion-button fill="outline" color="warning" slot="end">Agregar</ion-button>   
+                  <ion-badge slot="start" color="success">{{producto.precio | currency}}</ion-badge>                
+                  <ion-button color="warning" (click)="remove(producto)"><ion-icon name="remove-outline"></ion-icon></ion-button> 
+                  <ion-input type="number" inputMode="numeric"  [(ngModel)]="producto.cantidad" min="1" max="10" disabled></ion-input>
+                  <ion-button color="warning" (click)="add(producto)"><ion-icon name="add-outline"></ion-icon></ion-button>       
                 </ion-item>      
-                                                 
+                <ion-item><ion-button fill="outline" color="warning" slot="end">Agregar</ion-button>  </ion-item>    
               </ion-card-content>
             </ion-card>
           </ion-slide>

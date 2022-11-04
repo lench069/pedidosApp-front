@@ -9,6 +9,8 @@ import { ServiciosService } from '../servicios.service';
 })
 export class InicioClientePage implements OnInit {
 
+  public cantidad: number = 0; 
+
   options = {
     centeredSlides: true,
     slidesPerView: 1,
@@ -57,11 +59,28 @@ export class InicioClientePage implements OnInit {
     this.servicio.Producto_Listado()
       .subscribe((data: any) => {
         this.productos = data.info.items;
+        this.productos.forEach(producto => {
+          producto.cantidad = 0;
+        });
+        console.log(this.productos);
         this.totalP = data.info.total;
         l.dismiss();
       }, (error: any) => {
         l.dismiss();
       });
+  }
+
+  add(producto){
+    if(producto.cantidad < 10){
+      producto.cantidad++;
+    }
+    
+  }
+  remove(producto){
+    if(producto.cantidad > 0){
+      producto.cantidad--;
+    }
+    
   }
 
 }

@@ -355,6 +355,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return m.InicioClientePageModule;
         });
       }
+    }, {
+      path: 'carrito',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | carrito-carrito-module */
+        "carrito-carrito-module").then(__webpack_require__.bind(null,
+        /*! ./carrito/carrito.module */
+        "./src/app/carrito/carrito.module.ts")).then(function (m) {
+          return m.CarritoPageModule;
+        });
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {

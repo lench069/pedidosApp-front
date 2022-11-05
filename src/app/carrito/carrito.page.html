@@ -11,7 +11,7 @@
 
 <ion-content [fullscreen]="true" class="page-cart">
 
-  <ion-list class="cart-list" *ngFor="let pedido of pedido">
+  <ion-list class="cart-list" *ngFor="let pedido of pedidos">
     <!-- item-list -->
     <ion-item class="cart-item">
       <!-- item -->
@@ -32,12 +32,12 @@
                 <!-- row-for count item -->
                 <ion-col size="10">
                   <div class="count">
-                    <span class="item-count" (click)="remove(cartItem)">
+                    <span class="item-count" (click)="remove(pedido, i)">
                       -
                     </span>
                     <span class="item-count show-count"> {{pedido.cantidad}}
                     </span>
-                    <span class="item-count" (click)="add(cartItem)">
+                    <span class="item-count" (click)="add(pedido, i)">
                       +
                     </span>
                   </div>
@@ -45,7 +45,7 @@
                 </ion-col>
                 <ion-col size="2">
                   <!-- col-cancel  button -->
-                  <ion-icon name="trash" (click)="deleteItem(cartItem)">
+                  <ion-icon name="trash" (click)="deleteItem(pedido, i)">
                   </ion-icon>
                 </ion-col>
               </ion-row>

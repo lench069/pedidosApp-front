@@ -513,6 +513,10 @@ const routes = [
     {
         path: 'inicio-cliente',
         loadChildren: () => __webpack_require__.e(/*! import() | inicio-cliente-inicio-cliente-module */ "inicio-cliente-inicio-cliente-module").then(__webpack_require__.bind(null, /*! ./inicio-cliente/inicio-cliente.module */ "./src/app/inicio-cliente/inicio-cliente.module.ts")).then(m => m.InicioClientePageModule)
+    },
+    {
+        path: 'carrito',
+        loadChildren: () => __webpack_require__.e(/*! import() | carrito-carrito-module */ "carrito-carrito-module").then(__webpack_require__.bind(null, /*! ./carrito/carrito.module */ "./src/app/carrito/carrito.module.ts")).then(m => m.CarritoPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {

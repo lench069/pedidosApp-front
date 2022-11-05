@@ -43,7 +43,7 @@ export class InicioClientePage implements OnInit {
   async ionViewWillEnter() {
     this.Cargar_Categorias();
     this.Cargar_Productos();
-    let pedido = await this.storage.get('pedido');
+    let pedido = await this.storage.get('pedidos');
     this.pedidolocal = pedido != null ? pedido : [];
   }
 
@@ -96,7 +96,7 @@ export class InicioClientePage implements OnInit {
   addProducto(producto, i){
     if(producto.cantidad != 0){
       this.pedidolocal.push(producto);
-      this.storage.set('pedido', this.pedidolocal).then((data:any)=>{
+      this.storage.set('pedidos', this.pedidolocal).then((data:any)=>{
         producto.cantidad = 0;
       });
       this.servicio.Mensaje('Producto agregado correctamente', 'success');     

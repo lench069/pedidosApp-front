@@ -9,7 +9,7 @@ import { ServiciosService } from '../servicios.service';
   styleUrls: ['./carrito.page.scss'],
 })
 export class CarritoPage implements OnInit {
-  public pedido : any;
+  public pedidos : any;
 
   constructor(public servicio: ServiciosService,
     public loading: LoadingController,
@@ -25,9 +25,31 @@ export class CarritoPage implements OnInit {
   async ionViewWillEnter() //se ejecuta a penas se abra la vista
   {
     this.storage.create();
-    let pedido = await this.storage.get('pedido');
-    this.pedido = pedido;
-    console.log(pedido);
+    let pedidos = await this.storage.get('pedidos');
+    this.pedidos = pedidos;
+    console.log(pedidos);
+  }
+
+  add(pedido, i){
+    if(pedido.cantidad < 10){   
+      pedido.cantidad++;
+      this.pedidos[i] = pedido;
+      this.storage.set('pedidos', this.pedidos);
+    }
+    
+  }
+  remove(pedido, i){
+    if(pedido.cantidad > 1){
+      pedido.cantidad--;
+      this.pedidos[i] = pedido;
+      this.storage.set('pedidos', this.pedidos);
+    }
+    
+  }
+
+  deleteItem(pedido,i){
+    this.pedidos.splice(i-1, 1);
+    this.storage.set('pedidos', this.pedidos);
   }
 
 }

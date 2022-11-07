@@ -11,6 +11,13 @@
 
 <ion-content [fullscreen]="true" class="page-cart">
 
+  <div *ngIf="!flag">
+    <ion-row>
+      <ion-icon class="empty-cart" name="cart"></ion-icon>
+    </ion-row>
+    <h4 style="background-color: #32cd32;">No tienes items seleccionados</h4>
+  </div>
+
   <ion-list class="cart-list" *ngFor="let pedido of pedidos">
     <!-- item-list -->
     <ion-item class="cart-item">
@@ -55,5 +62,21 @@
       </ion-row>
     </ion-item>
   </ion-list>
+  <ion-row class="price-details" *ngIf="flag">
+    <ion-col col-12 class="calculate">
+      <p class="bill-detail">Subtotal
+        <span> {{subTotal | currency}}</span>
+      </p>     
+      <p class="bill-detail">Iva (12%)
+        <span> {{iva | currency}}</span>
+      </p>
+      <hr>       
+      <p class="cart-total">
+        <strong>Order Total </strong>
+        <span class="price"> {{Total | currency}}</span>
+      </p>
 
+    </ion-col>
+  </ion-row>
+  <ion-button expand="block" color="success" *ngIf="flag"><strong>Pedir</strong></ion-button>
 </ion-content>

@@ -148,7 +148,7 @@ ion-item {
          }
          .item-price {
            font-weight: 700;
-           color: blue;
+           color: #32cd32;
          }
         
    
@@ -173,19 +173,19 @@ ion-item {
          span {
            float: right;
            font-weight: 700;
-           color: blue
+           color: #32cd32
          }
        }
      }
      .continue-btn {
-       background-color: blue !important;
+       background-color: #32cd32 !important;
        height: 46px;
        font-size: 1.8rem;
        border-radius: 0;
        margin-top: 1em;
      }
      .empty-btn{
-       background-color: blue !important;
+       background-color: #32cd32 !important;
        margin: 3em auto;
        display: block;
      }
@@ -208,8 +208,8 @@ ion-item {
      }
       
        .apply-coupon-btn{
-        color: blue;
-        border-color: blue;
+        color: #32cd32;
+        border-color: #32cd32;
        }
        .invalid-text{
          color: red;
@@ -239,10 +239,10 @@ ion-item {
        font-size: 10.2em;
        display: block;
        margin: .2em auto 0;
-       color: blue;
+       color: #32cd32;
      } 
      .coupon-applied{
-       color:blue;
+       color:#32cd32;
      }
      p{
       margin-top: 1px;

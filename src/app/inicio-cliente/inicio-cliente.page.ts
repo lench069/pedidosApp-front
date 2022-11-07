@@ -53,7 +53,6 @@ export class InicioClientePage implements OnInit {
     this.servicio.Categorias_Listado()
       .subscribe((data: any) => {
         this.categorias = data.info.items;
-        console.log(this.categorias);
         this.total = data.info.total;
         l.dismiss();
       }, (error: any) => {
@@ -70,7 +69,6 @@ export class InicioClientePage implements OnInit {
         this.productos.forEach(producto => {
           producto.cantidad = 0;
         });
-        console.log(this.productos);
         this.totalP = data.info.total;
         l.dismiss();
       }, (error: any) => {
@@ -82,7 +80,6 @@ export class InicioClientePage implements OnInit {
     if(producto.cantidad < 10){   
       producto.cantidad++;
       this.productos[i]= producto;
-      console.log(this.productos[i]);
     }
     
   }
@@ -94,12 +91,26 @@ export class InicioClientePage implements OnInit {
     
   }
   addProducto(producto, i){
+    let cont = 0;
     if(producto.cantidad != 0){
-      this.pedidolocal.push(producto);
-      this.storage.set('pedidos', this.pedidolocal).then((data:any)=>{
-        producto.cantidad = 0;
-      });
-      this.servicio.Mensaje('Producto agregado correctamente', 'success');     
+    for(let i = 0; i < this.pedidolocal.length; i++ ){
+          if(this.pedidolocal[i].codigo == producto.codigo){
+            this.pedidolocal[i] = producto;
+            cont++;
+            console.log('aqui');
+          console.log(this.pedidolocal);
+          }
+      }
+        if(cont == 0){
+          this.pedidolocal.push(producto);
+        }
+        this.storage.set('pedidos', this.pedidolocal).then((data:any)=>{
+          producto.cantidad = 0;
+        });
+        this.servicio.Mensaje('Producto agregado correctamente', 'success'); 
+    
+      
+          
     }else{
       this.servicio.Mensaje('Debe seleccionar una cantidad', 'warning');
     }

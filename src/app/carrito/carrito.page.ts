@@ -10,6 +10,10 @@ import { ServiciosService } from '../servicios.service';
 })
 export class CarritoPage implements OnInit {
   public pedidos : any;
+  public subTotal: number = 0;
+  public iva: number = 0;
+  public Total: number = 0;
+  public flag: boolean = false;
 
   constructor(public servicio: ServiciosService,
     public loading: LoadingController,
@@ -27,7 +31,7 @@ export class CarritoPage implements OnInit {
     this.storage.create();
     let pedidos = await this.storage.get('pedidos');
     this.pedidos = pedidos;
-    console.log(pedidos);
+    this.calcularTotal();
   }
 
   add(pedido, i){
@@ -35,6 +39,7 @@ export class CarritoPage implements OnInit {
       pedido.cantidad++;
       this.pedidos[i] = pedido;
       this.storage.set('pedidos', this.pedidos);
+      this.calcularTotal();
     }
     
   }
@@ -43,6 +48,7 @@ export class CarritoPage implements OnInit {
       pedido.cantidad--;
       this.pedidos[i] = pedido;
       this.storage.set('pedidos', this.pedidos);
+      this.calcularTotal();
     }
     
   }
@@ -50,6 +56,27 @@ export class CarritoPage implements OnInit {
   deleteItem(pedido,i){
     this.pedidos.splice(i-1, 1);
     this.storage.set('pedidos', this.pedidos);
+    this.calcularTotal();
+    if(this.pedidos.length == 0){
+    this.flag = false;
+    }
+  }
+  pedir()
+  {
+
+  }
+
+  calcularTotal(){
+    if(this.pedidos.length > 0){
+      this.flag = true;
+      console.log(this.pedidos);
+      this.subTotal = 0;
+      this.pedidos.forEach(element => {
+            this.subTotal = this.subTotal + (parseFloat(element.precio) * element.cantidad);
+        });
+        this.iva = this.subTotal * 0.12;
+        this.Total = this.subTotal + this.iva;
+    }
   }
 
 }

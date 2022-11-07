@@ -14,6 +14,11 @@ export class CarritoPage implements OnInit {
   public iva: number = 0;
   public Total: number = 0;
   public flag: boolean = false;
+  public id: number = 0;
+  public cliente_id: number = 0;
+  public usuario_id: number = 0;
+  public fecha: any = new Date();
+  public estado: number = 0;
 
   constructor(public servicio: ServiciosService,
     public loading: LoadingController,
@@ -30,7 +35,12 @@ export class CarritoPage implements OnInit {
   {
     this.storage.create();
     let pedidos = await this.storage.get('pedidos');
-    this.pedidos = pedidos;
+    if(pedidos != null){
+      this.pedidos = pedidos;
+    }else{
+      this.pedidos = [];
+    }
+   
     this.calcularTotal();
   }
 
@@ -61,9 +71,28 @@ export class CarritoPage implements OnInit {
     this.flag = false;
     }
   }
-  pedir()
+  async pedir()
   {
-
+    let l = await this.loading.create();
+    l.present();
+    this.servicio.Pedido_Guardar({
+      id: this.id,
+      cliente_id: 1,
+      usuario_id: 1,
+      fecha: this.fecha,
+      estado: 0
+    }).subscribe((data: any) => {
+      l.dismiss();
+      this.pedidos.forEach(element => {
+        this.guardarDetalle(data.info.id, element);
+      });
+      this.storage.remove('pedidos');
+      this.servicio.irA('/inicio-cliente')
+      
+    }, _ => {
+      l.dismiss();
+      this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+    });
   }
 
   calcularTotal(){
@@ -77,6 +106,20 @@ export class CarritoPage implements OnInit {
         this.iva = this.subTotal * 0.12;
         this.Total = this.subTotal + this.iva;
     }
+  }
+
+   guardarDetalle(pedidoId, pedido){
+      if (pedidoId > 0) {
+          //Guarda el detalle del pedido
+        this.servicio.Pedido_Guardar_Producto({
+          pedido_id: pedidoId ,
+          producto_id: pedido.id,
+          cantidad: 1,
+          precio: pedido.precio
+        }).subscribe((data: any) => {
+          
+        });
+      }
   }
 
 }

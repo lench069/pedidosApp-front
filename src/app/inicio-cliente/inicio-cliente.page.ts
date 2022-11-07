@@ -79,8 +79,9 @@ export class InicioClientePage implements OnInit {
   add(producto, i){
     if(producto.cantidad < 10){   
       producto.cantidad++;
-      this.productos[i]= producto;
+      this.productos[i] = producto;
     }
+    
     
   }
   remove(producto, i){
@@ -107,10 +108,7 @@ export class InicioClientePage implements OnInit {
         this.storage.set('pedidos', this.pedidolocal).then((data:any)=>{
           producto.cantidad = 0;
         });
-        this.servicio.Mensaje('Producto agregado correctamente', 'success'); 
-    
-      
-          
+        this.servicio.Mensaje('Producto agregado correctamente', 'success');         
     }else{
       this.servicio.Mensaje('Debe seleccionar una cantidad', 'warning');
     }

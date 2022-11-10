@@ -39,7 +39,7 @@
           <ion-slides [options]="categories">
             
             <ion-slide *ngFor="let categoria of categorias">
-              <ion-card class="category" [color]="categoria.color">
+              <ion-card class="category" [color]="categoria.color" (click)="selectCategoria(categoria)">
                 <ion-card-header class="ion-text-center">
                   <ion-icon [src]="categoria.icon"></ion-icon>
                   <ion-card-title>{{categoria.nombre}}</ion-card-title>

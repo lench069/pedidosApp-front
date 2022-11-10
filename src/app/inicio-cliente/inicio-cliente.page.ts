@@ -70,6 +70,7 @@ export class InicioClientePage implements OnInit {
           producto.cantidad = 0;
         });
         this.totalP = data.info.total;
+        console.log(this.productos);
         l.dismiss();
       }, (error: any) => {
         l.dismiss();
@@ -113,6 +114,22 @@ export class InicioClientePage implements OnInit {
       this.servicio.Mensaje('Debe seleccionar una cantidad', 'warning');
     }
     
+  }
+
+  async selectCategoria(categoria){
+    console.log(categoria)
+    let l = await this.loading.create();
+    l.present();
+    this.servicio.Buscar_Productos_Categoria(categoria.id)
+      .subscribe((data: any) => {
+        this.productos = data.info.items;
+        this.productos.forEach(producto => {
+          producto.cantidad = 0;
+        });
+        l.dismiss();
+      }, (error: any) => {
+        l.dismiss();
+      });
   }
 
 }

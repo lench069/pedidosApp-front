@@ -56,6 +56,10 @@ export class ServiciosService {
     return this.http.get(this.URL_API + 'consultar-producto/' + _id);
   }
 
+  Buscar_Productos_Categoria(_id: number) {
+    return this.http.get(this.URL_API + 'consultar-producto-categoria/' + _id);
+  }
+
   Producto_Guardar(data: any) {
     return this.http.post(this.URL_API + (data.id == 0 ? 'crear-producto' : 'actualizar-producto/' + data.id), this.objectToFormData({
       id: data.id,

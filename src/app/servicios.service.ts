@@ -123,13 +123,15 @@ export class ServiciosService {
   }
 
   Cliente_Guardar(data: any) {
+    console.log(data);
     return this.http.post(this.URL_API + (data.id == 0 ? 'crear-cliente' : 'actualizar-cliente/' + data.id), this.objectToFormData({
       id: data.id,
-      identificacion: data.identificacion,
+      identificacion: data.cedula,
       nombre: data.nombre,
       telefono: data.telefono,
       correo: data.correo,
-      direccion: data.direccion
+      direccion: data.direccion,
+      uuid: data.uuid
     }));
   }
   /* Fin: Usuarios */
@@ -270,4 +272,5 @@ export class ServiciosService {
     return this.http.post(this.URL_API + 'listado-categoria', this.objectToFormData({
     }));
   }
+  
 }

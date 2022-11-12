@@ -118,7 +118,8 @@ export class ServiciosService {
     }));
   }
 
-  Cliente_Consulta(_id: number) {
+  Cliente_Consulta(_id: string) {
+    console.log('hhhh '+_id);
     return this.http.get(this.URL_API + 'consultar-cliente/' + _id);
   }
 

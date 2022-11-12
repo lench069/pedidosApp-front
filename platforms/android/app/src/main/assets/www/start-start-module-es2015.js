@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"danger\">\n      <ion-title>Inicio</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <br>\n  <br><br>\n  <br><br>\n  <ion-grid>\n      <ion-row>\n          <ion-col>\n              <ion-card color=\"primary\" (click)=\"servicio.irA('/inicio-cliente')\">\n                  <ion-card-content>\n                      <ion-icon name=\"people-outline\"></ion-icon>\n                  </ion-card-content>\n                  <ion-card-header>\n                      <ion-card-title>Zona Clientes</ion-card-title>\n                  </ion-card-header>\n              </ion-card>\n          </ion-col>\n         \n      </ion-row>\n      <ion-col>\n          <ion-card color=\"dark\" (click)=\"servicio.irA('/login')\">\n              <ion-card-content>\n                  <ion-icon name=\"people-circle-outline\"></ion-icon>\n              </ion-card-content>\n              <ion-card-header>\n                  <ion-card-title>Zona Admin</ion-card-title>\n              </ion-card-header>\n          </ion-card>\n      </ion-col>\n      <ion-row>\n      </ion-row>\n  </ion-grid>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"danger\">\n      <ion-title>Inicio</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <br>\n  <br><br>\n  <br><br>\n  <ion-grid>\n      <ion-row>\n          <ion-col>\n              <ion-card color=\"primary\" (click)=\"validate()\">\n                  <ion-card-content>\n                      <ion-icon name=\"people-outline\"></ion-icon>\n                  </ion-card-content>\n                  <ion-card-header>\n                      <ion-card-title>Zona Clientes</ion-card-title>\n                  </ion-card-header>\n              </ion-card>\n          </ion-col>\n         \n      </ion-row>\n      <ion-col>\n          <ion-card color=\"dark\" (click)=\"servicio.irA('/login')\">\n              <ion-card-content>\n                  <ion-icon name=\"people-circle-outline\"></ion-icon>\n              </ion-card-content>\n              <ion-card-header>\n                  <ion-card-title>Zona Admin</ion-card-title>\n              </ion-card-header>\n          </ion-card>\n      </ion-col>\n      <ion-row>\n      </ion-row>\n  </ion-grid>\n</ion-content>");
 
 /***/ }),
 
@@ -118,23 +118,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _awesome_cordova_plugins_device_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @awesome-cordova-plugins/device/ngx */ "./node_modules/@awesome-cordova-plugins/device/__ivy_ngcc__/ngx/index.js");
-/* harmony import */ var _servicios_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../servicios.service */ "./src/app/servicios.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var _servicios_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../servicios.service */ "./src/app/servicios.service.ts");
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/storage-angular */ "./node_modules/@ionic/storage-angular/__ivy_ngcc__/fesm2015/ionic-storage-angular.js");
+
+
 
 
 
 
 let StartPage = class StartPage {
-    constructor(servicio, device) {
+    constructor(servicio, device, loading, storage) {
         this.servicio = servicio;
         this.device = device;
+        this.loading = loading;
+        this.storage = storage;
         console.log('Device UUID is: ' + this.device.uuid);
     }
     ngOnInit() {
     }
+    validate() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.storage.create();
+            this.storage.set('uuid', this.device.uuid);
+            let l = yield this.loading.create();
+            l.present();
+            this.servicio.Cliente_Consulta(this.device.uuid)
+                .subscribe((data) => {
+                l.dismiss();
+                if (data.info.item.id > 0) {
+                    this.servicio.irA('/inicio-cliente');
+                }
+                else {
+                    this.servicio.Mensaje('El cliente que intenta consultar no existe.', 'danger');
+                    this.servicio.irA('/registro');
+                }
+            }, _ => {
+                l.dismiss();
+                this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+                this.servicio.irA('/registro');
+            });
+        });
+    }
 };
 StartPage.ctorParameters = () => [
-    { type: _servicios_service__WEBPACK_IMPORTED_MODULE_3__["ServiciosService"] },
-    { type: _awesome_cordova_plugins_device_ngx__WEBPACK_IMPORTED_MODULE_2__["Device"] }
+    { type: _servicios_service__WEBPACK_IMPORTED_MODULE_4__["ServiciosService"] },
+    { type: _awesome_cordova_plugins_device_ngx__WEBPACK_IMPORTED_MODULE_2__["Device"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] },
+    { type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_5__["Storage"] }
 ];
 StartPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

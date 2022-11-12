@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"danger\">\n      <ion-title>Inicio</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <br>\n  <br><br>\n  <br><br>\n  <ion-grid>\n      <ion-row>\n          <ion-col>\n              <ion-card color=\"primary\" (click)=\"servicio.irA('/inicio-cliente')\">\n                  <ion-card-content>\n                      <ion-icon name=\"people-outline\"></ion-icon>\n                  </ion-card-content>\n                  <ion-card-header>\n                      <ion-card-title>Zona Clientes</ion-card-title>\n                  </ion-card-header>\n              </ion-card>\n          </ion-col>\n         \n      </ion-row>\n      <ion-col>\n          <ion-card color=\"dark\" (click)=\"servicio.irA('/login')\">\n              <ion-card-content>\n                  <ion-icon name=\"people-circle-outline\"></ion-icon>\n              </ion-card-content>\n              <ion-card-header>\n                  <ion-card-title>Zona Admin</ion-card-title>\n              </ion-card-header>\n          </ion-card>\n      </ion-col>\n      <ion-row>\n      </ion-row>\n  </ion-grid>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"danger\">\n      <ion-title>Inicio</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <br>\n  <br><br>\n  <br><br>\n  <ion-grid>\n      <ion-row>\n          <ion-col>\n              <ion-card color=\"primary\" (click)=\"validate()\">\n                  <ion-card-content>\n                      <ion-icon name=\"people-outline\"></ion-icon>\n                  </ion-card-content>\n                  <ion-card-header>\n                      <ion-card-title>Zona Clientes</ion-card-title>\n                  </ion-card-header>\n              </ion-card>\n          </ion-col>\n         \n      </ion-row>\n      <ion-col>\n          <ion-card color=\"dark\" (click)=\"servicio.irA('/login')\">\n              <ion-card-content>\n                  <ion-icon name=\"people-circle-outline\"></ion-icon>\n              </ion-card-content>\n              <ion-card-header>\n                  <ion-card-title>Zona Admin</ion-card-title>\n              </ion-card-header>\n          </ion-card>\n      </ion-col>\n      <ion-row>\n      </ion-row>\n  </ion-grid>\n</ion-content>";
     /***/
   },
 
@@ -218,22 +218,81 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _servicios_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var _servicios_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ../servicios.service */
     "./src/app/servicios.service.ts");
+    /* harmony import */
+
+
+    var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @ionic/storage-angular */
+    "./node_modules/@ionic/storage-angular/__ivy_ngcc__/fesm2015/ionic-storage-angular.js");
 
     var StartPage = /*#__PURE__*/function () {
-      function StartPage(servicio, device) {
+      function StartPage(servicio, device, loading, storage) {
         _classCallCheck(this, StartPage);
 
         this.servicio = servicio;
         this.device = device;
+        this.loading = loading;
+        this.storage = storage;
         console.log('Device UUID is: ' + this.device.uuid);
       }
 
       _createClass(StartPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {}
+      }, {
+        key: "validate",
+        value: function validate() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this = this;
+
+            var l;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    this.storage.create();
+                    this.storage.set('uuid', this.device.uuid);
+                    _context.next = 4;
+                    return this.loading.create();
+
+                  case 4:
+                    l = _context.sent;
+                    l.present();
+                    this.servicio.Cliente_Consulta(this.device.uuid).subscribe(function (data) {
+                      l.dismiss();
+
+                      if (data.info.item.id > 0) {
+                        _this.servicio.irA('/inicio-cliente');
+                      } else {
+                        _this.servicio.Mensaje('El cliente que intenta consultar no existe.', 'danger');
+
+                        _this.servicio.irA('/registro');
+                      }
+                    }, function (_) {
+                      l.dismiss();
+
+                      _this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+
+                      _this.servicio.irA('/registro');
+                    });
+
+                  case 7:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
       }]);
 
       return StartPage;
@@ -241,9 +300,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     StartPage.ctorParameters = function () {
       return [{
-        type: _servicios_service__WEBPACK_IMPORTED_MODULE_3__["ServiciosService"]
+        type: _servicios_service__WEBPACK_IMPORTED_MODULE_4__["ServiciosService"]
       }, {
         type: _awesome_cordova_plugins_device_ngx__WEBPACK_IMPORTED_MODULE_2__["Device"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"]
+      }, {
+        type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_5__["Storage"]
       }];
     };
 

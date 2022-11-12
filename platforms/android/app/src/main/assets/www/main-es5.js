@@ -366,6 +366,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return m.CarritoPageModule;
         });
       }
+    }, {
+      path: 'registro',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | registro-registro-module */
+        "registro-registro-module").then(__webpack_require__.bind(null,
+        /*! ./registro/registro.module */
+        "./src/app/registro/registro.module.ts")).then(function (m) {
+          return m.RegistroPageModule;
+        });
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {
@@ -866,13 +877,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "Cliente_Guardar",
         value: function Cliente_Guardar(data) {
+          console.log(data);
           return this.http.post(this.URL_API + (data.id == 0 ? 'crear-cliente' : 'actualizar-cliente/' + data.id), this.objectToFormData({
             id: data.id,
-            identificacion: data.identificacion,
+            identificacion: data.cedula,
             nombre: data.nombre,
             telefono: data.telefono,
             correo: data.correo,
-            direccion: data.direccion
+            direccion: data.direccion,
+            uuid: data.uuid
           }));
         }
         /* Fin: Usuarios */

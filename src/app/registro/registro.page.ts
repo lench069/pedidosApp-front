@@ -23,9 +23,12 @@ export class RegistroPage implements OnInit {
   	private storage: Storage,
     public toastCtrl: ToastController,
     private servicio:ServiciosService,
-    public loading: LoadingController) { }
+    public loading: LoadingController) { 
+      
+    }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.uuid = await this.storage.get('uuid');
   }
 
   async prosesLogin(){

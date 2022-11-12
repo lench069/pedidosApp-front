@@ -517,6 +517,10 @@ const routes = [
     {
         path: 'carrito',
         loadChildren: () => __webpack_require__.e(/*! import() | carrito-carrito-module */ "carrito-carrito-module").then(__webpack_require__.bind(null, /*! ./carrito/carrito.module */ "./src/app/carrito/carrito.module.ts")).then(m => m.CarritoPageModule)
+    },
+    {
+        path: 'registro',
+        loadChildren: () => __webpack_require__.e(/*! import() | registro-registro-module */ "registro-registro-module").then(__webpack_require__.bind(null, /*! ./registro/registro.module */ "./src/app/registro/registro.module.ts")).then(m => m.RegistroPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -827,13 +831,15 @@ let ServiciosService = class ServiciosService {
         return this.http.get(this.URL_API + 'consultar-cliente/' + _id);
     }
     Cliente_Guardar(data) {
+        console.log(data);
         return this.http.post(this.URL_API + (data.id == 0 ? 'crear-cliente' : 'actualizar-cliente/' + data.id), this.objectToFormData({
             id: data.id,
-            identificacion: data.identificacion,
+            identificacion: data.cedula,
             nombre: data.nombre,
             telefono: data.telefono,
             correo: data.correo,
-            direccion: data.direccion
+            direccion: data.direccion,
+            uuid: data.uuid
         }));
     }
     /* Fin: Usuarios */

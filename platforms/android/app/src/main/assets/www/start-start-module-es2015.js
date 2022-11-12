@@ -117,19 +117,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StartPage", function() { return StartPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _servicios_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../servicios.service */ "./src/app/servicios.service.ts");
+/* harmony import */ var _awesome_cordova_plugins_device_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @awesome-cordova-plugins/device/ngx */ "./node_modules/@awesome-cordova-plugins/device/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _servicios_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../servicios.service */ "./src/app/servicios.service.ts");
+
 
 
 
 let StartPage = class StartPage {
-    constructor(servicio) {
+    constructor(servicio, device) {
         this.servicio = servicio;
+        this.device = device;
+        console.log('Device UUID is: ' + this.device.uuid);
     }
     ngOnInit() {
     }
 };
 StartPage.ctorParameters = () => [
-    { type: _servicios_service__WEBPACK_IMPORTED_MODULE_2__["ServiciosService"] }
+    { type: _servicios_service__WEBPACK_IMPORTED_MODULE_3__["ServiciosService"] },
+    { type: _awesome_cordova_plugins_device_ngx__WEBPACK_IMPORTED_MODULE_2__["Device"] }
 ];
 StartPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

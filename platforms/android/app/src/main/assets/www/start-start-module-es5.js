@@ -212,15 +212,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _servicios_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    var _awesome_cordova_plugins_device_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @awesome-cordova-plugins/device/ngx */
+    "./node_modules/@awesome-cordova-plugins/device/__ivy_ngcc__/ngx/index.js");
+    /* harmony import */
+
+
+    var _servicios_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ../servicios.service */
     "./src/app/servicios.service.ts");
 
     var StartPage = /*#__PURE__*/function () {
-      function StartPage(servicio) {
+      function StartPage(servicio, device) {
         _classCallCheck(this, StartPage);
 
         this.servicio = servicio;
+        this.device = device;
+        console.log('Device UUID is: ' + this.device.uuid);
       }
 
       _createClass(StartPage, [{
@@ -233,7 +241,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     StartPage.ctorParameters = function () {
       return [{
-        type: _servicios_service__WEBPACK_IMPORTED_MODULE_2__["ServiciosService"]
+        type: _servicios_service__WEBPACK_IMPORTED_MODULE_3__["ServiciosService"]
+      }, {
+        type: _awesome_cordova_plugins_device_ngx__WEBPACK_IMPORTED_MODULE_2__["Device"]
       }];
     };
 

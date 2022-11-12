@@ -663,6 +663,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/push/ngx */ "./node_modules/@ionic-native/push/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ "./node_modules/@ionic-native/android-permissions/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic/storage-angular */ "./node_modules/@ionic/storage-angular/__ivy_ngcc__/fesm2015/ionic-storage-angular.js");
+/* harmony import */ var _awesome_cordova_plugins_device_ngx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @awesome-cordova-plugins/device/ngx */ "./node_modules/@awesome-cordova-plugins/device/__ivy_ngcc__/ngx/index.js");
+
 
 
 
@@ -693,6 +695,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         ],
         providers: [
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
+            _awesome_cordova_plugins_device_ngx__WEBPACK_IMPORTED_MODULE_15__["Device"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
             _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__["Camera"],
             _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_12__["Push"],
@@ -765,6 +768,9 @@ let ServiciosService = class ServiciosService {
     }
     Producto_Consulta(_id) {
         return this.http.get(this.URL_API + 'consultar-producto/' + _id);
+    }
+    Buscar_Productos_Categoria(_id) {
+        return this.http.get(this.URL_API + 'consultar-producto-categoria/' + _id);
     }
     Producto_Guardar(data) {
         return this.http.post(this.URL_API + (data.id == 0 ? 'crear-producto' : 'actualizar-producto/' + data.id), this.objectToFormData({

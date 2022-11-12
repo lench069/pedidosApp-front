@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header class=\"ion-no-border\">\r\n  <ion-item lines=\"none\">\r\n    <ion-buttons slot=\"start\">\r\n      <ion-back-button text=\"\" defaultHref=\"start\"></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-label>\r\n      <h2>Sweet & Salty</h2>\r\n    </ion-label>\r\n    <ion-buttons slot=\"end\">\r\n      <button ion-button icon-only  (click)=\"servicio.irA('/carrito')\" class=\"header-btn-cart\">\r\n        <ion-icon name=\"fast-food-outline\" style=\"zoom:2.0;\"></ion-icon>\r\n        <ion-badge class=\"carts\" item-right color=\"danger\">{{pedidolocal!= null ? pedidolocal.length : 0}}</ion-badge>\r\n      </button>\r\n    </ion-buttons>\r\n  </ion-item>\r\n</ion-header>\r\n\r\n<ion-content [fullscreen]=\"true\">\r\n\r\n<div class=\"ion-padding wrapper\">\r\n\r\n  <ion-searchbar placeholder=\"Buscar...\" animated=\"true\"></ion-searchbar>\r\n\r\n  <ion-grid class=\"ion-no-padding\">\r\n    <ion-row class=\"ion-align-items-baseline\">\r\n      <ion-col size=\"6\">\r\n        <h4 class=\"title\">\r\n          Categorias\r\n        </h4>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n\r\n  </div>\r\n\r\n    <ion-grid class=\"ion-no-padding\">\r\n      <ion-row>\r\n        <ion-col size=\"12\">\r\n          <ion-slides [options]=\"categories\">\r\n            \r\n            <ion-slide *ngFor=\"let categoria of categorias\">\r\n              <ion-card class=\"category\" [color]=\"categoria.color\">\r\n                <ion-card-header class=\"ion-text-center\">\r\n                  <ion-icon [src]=\"categoria.icon\"></ion-icon>\r\n                  <ion-card-title>{{categoria.nombre}}</ion-card-title>\r\n                </ion-card-header>\r\n              </ion-card>\r\n            </ion-slide>    \r\n            </ion-slides>\r\n        </ion-col>\r\n      </ion-row>\r\n    </ion-grid>\r\n\r\n    <div class=\"ion-padding-horizontal wrapper\">\r\n  \r\n      <ion-grid class=\"ion-no-padding\">\r\n        <ion-row class=\"ion-align-items-baseline\">\r\n          <ion-col size=\"6\">\r\n            <h4 class=\"title\">\r\n              Menu\r\n            </h4>\r\n          </ion-col>\r\n        </ion-row>\r\n      </ion-grid>\r\n    \r\n      </div>\r\n\r\n  <ion-grid class=\"ion-no-padding\">\r\n    <ion-row>\r\n      <ion-col size=\"12\">\r\n        <ion-slides [options]=\"options\">\r\n\r\n          <ion-slide *ngFor=\"let producto of productos; let i = index\">\r\n            <ion-card class=\"card\">\r\n              <ion-card-content class=\"ion-text-left\">\r\n\r\n                <div class=\"img-wrapper\">\r\n                  <ion-img [src]=\"producto.imagen\"></ion-img>\r\n                </div>\r\n                \r\n                <ion-card-title class=\"title\">{{producto.nombre}}</ion-card-title>\r\n                <ion-card-subtitle>{{producto.descripcion}}</ion-card-subtitle>        \r\n                <ion-item>\r\n                  <ion-badge slot=\"start\" color=\"success\">{{producto.precio | currency}}</ion-badge>                \r\n                  <ion-button color=\"warning\" (click)=\"remove(producto, i)\"><ion-icon name=\"remove-outline\"></ion-icon></ion-button> \r\n                  <ion-input type=\"number\" inputMode=\"numeric\"  [(ngModel)]=\"producto.cantidad\" min=\"1\" max=\"10\" disabled></ion-input>\r\n                  <ion-button color=\"warning\" (click)=\"add(producto, i)\"><ion-icon name=\"add-outline\"></ion-icon></ion-button>       \r\n                </ion-item>      \r\n                <ion-item><ion-button fill=\"outline\" color=\"warning\" slot=\"end\" (click)=\"addProducto(producto, i)\">Agregar</ion-button>  </ion-item>    \r\n              </ion-card-content>\r\n            </ion-card>\r\n          </ion-slide>\r\n        </ion-slides>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n\r\n</ion-content>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header class=\"ion-no-border\">\r\n  <ion-item lines=\"none\">\r\n    <ion-buttons slot=\"start\">\r\n      <ion-back-button text=\"\" defaultHref=\"start\"></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-label>\r\n      <h2>Sweet & Salty</h2>\r\n    </ion-label>\r\n    <ion-buttons slot=\"end\">\r\n      <button ion-button icon-only  (click)=\"servicio.irA('/carrito')\" class=\"header-btn-cart\">\r\n        <ion-icon name=\"fast-food-outline\" style=\"zoom:2.0;\"></ion-icon>\r\n        <ion-badge class=\"carts\" item-right color=\"danger\">{{pedidolocal!= null ? pedidolocal.length : 0}}</ion-badge>\r\n      </button>\r\n    </ion-buttons>\r\n  </ion-item>\r\n</ion-header>\r\n\r\n<ion-content [fullscreen]=\"true\">\r\n\r\n<div class=\"ion-padding wrapper\">\r\n\r\n  <ion-searchbar placeholder=\"Buscar...\" animated=\"true\"></ion-searchbar>\r\n\r\n  <ion-grid class=\"ion-no-padding\">\r\n    <ion-row class=\"ion-align-items-baseline\">\r\n      <ion-col size=\"6\">\r\n        <h4 class=\"title\">\r\n          Categorias\r\n        </h4>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n\r\n  </div>\r\n\r\n    <ion-grid class=\"ion-no-padding\">\r\n      <ion-row>\r\n        <ion-col size=\"12\">\r\n          <ion-slides [options]=\"categories\">\r\n            \r\n            <ion-slide *ngFor=\"let categoria of categorias\">\r\n              <ion-card class=\"category\" [color]=\"categoria.color\" (click)=\"selectCategoria(categoria)\">\r\n                <ion-card-header class=\"ion-text-center\">\r\n                  <ion-icon [src]=\"categoria.icon\"></ion-icon>\r\n                  <ion-card-title>{{categoria.nombre}}</ion-card-title>\r\n                </ion-card-header>\r\n              </ion-card>\r\n            </ion-slide>    \r\n            </ion-slides>\r\n        </ion-col>\r\n      </ion-row>\r\n    </ion-grid>\r\n\r\n    <div class=\"ion-padding-horizontal wrapper\">\r\n  \r\n      <ion-grid class=\"ion-no-padding\">\r\n        <ion-row class=\"ion-align-items-baseline\">\r\n          <ion-col size=\"6\">\r\n            <h4 class=\"title\">\r\n              Menu\r\n            </h4>\r\n          </ion-col>\r\n        </ion-row>\r\n      </ion-grid>\r\n    \r\n      </div>\r\n\r\n  <ion-grid class=\"ion-no-padding\">\r\n    <ion-row>\r\n      <ion-col size=\"12\">\r\n        <ion-slides [options]=\"options\">\r\n\r\n          <ion-slide *ngFor=\"let producto of productos; let i = index\">\r\n            <ion-card class=\"card\">\r\n              <ion-card-content class=\"ion-text-left\">\r\n\r\n                <div class=\"img-wrapper\">\r\n                  <ion-img [src]=\"producto.imagen\"></ion-img>\r\n                </div>\r\n                \r\n                <ion-card-title class=\"title\">{{producto.nombre}}</ion-card-title>\r\n                <ion-card-subtitle>{{producto.descripcion}}</ion-card-subtitle>        \r\n                <ion-item>\r\n                  <ion-badge slot=\"start\" color=\"success\">{{producto.precio | currency}}</ion-badge>                \r\n                  <ion-button color=\"warning\" (click)=\"remove(producto, i)\"><ion-icon name=\"remove-outline\"></ion-icon></ion-button> \r\n                  <ion-input type=\"number\" inputMode=\"numeric\"  [(ngModel)]=\"producto.cantidad\" min=\"1\" max=\"10\" disabled></ion-input>\r\n                  <ion-button color=\"warning\" (click)=\"add(producto, i)\"><ion-icon name=\"add-outline\"></ion-icon></ion-button>       \r\n                </ion-item>      \r\n                <ion-item><ion-button fill=\"outline\" color=\"warning\" slot=\"end\" (click)=\"addProducto(producto, i)\">Agregar</ion-button>  </ion-item>    \r\n              </ion-card-content>\r\n            </ion-card>\r\n          </ion-slide>\r\n        </ion-slides>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n\r\n</ion-content>\r\n");
 
 /***/ }),
 
@@ -165,7 +165,6 @@ let InicioClientePage = class InicioClientePage {
             this.servicio.Categorias_Listado()
                 .subscribe((data) => {
                 this.categorias = data.info.items;
-                console.log(this.categorias);
                 this.total = data.info.total;
                 l.dismiss();
             }, (error) => {
@@ -183,8 +182,8 @@ let InicioClientePage = class InicioClientePage {
                 this.productos.forEach(producto => {
                     producto.cantidad = 0;
                 });
-                console.log(this.productos);
                 this.totalP = data.info.total;
+                console.log(this.productos);
                 l.dismiss();
             }, (error) => {
                 l.dismiss();
@@ -195,7 +194,6 @@ let InicioClientePage = class InicioClientePage {
         if (producto.cantidad < 10) {
             producto.cantidad++;
             this.productos[i] = producto;
-            console.log(this.productos[i]);
         }
     }
     remove(producto, i) {
@@ -205,8 +203,19 @@ let InicioClientePage = class InicioClientePage {
         }
     }
     addProducto(producto, i) {
+        let cont = 0;
         if (producto.cantidad != 0) {
-            this.pedidolocal.push(producto);
+            for (let i = 0; i < this.pedidolocal.length; i++) {
+                if (this.pedidolocal[i].codigo == producto.codigo) {
+                    this.pedidolocal[i] = producto;
+                    cont++;
+                    console.log('aqui');
+                    console.log(this.pedidolocal);
+                }
+            }
+            if (cont == 0) {
+                this.pedidolocal.push(producto);
+            }
             this.storage.set('pedidos', this.pedidolocal).then((data) => {
                 producto.cantidad = 0;
             });
@@ -215,6 +224,23 @@ let InicioClientePage = class InicioClientePage {
         else {
             this.servicio.Mensaje('Debe seleccionar una cantidad', 'warning');
         }
+    }
+    selectCategoria(categoria) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            console.log(categoria);
+            let l = yield this.loading.create();
+            l.present();
+            this.servicio.Buscar_Productos_Categoria(categoria.id)
+                .subscribe((data) => {
+                this.productos = data.info.items;
+                this.productos.forEach(producto => {
+                    producto.cantidad = 0;
+                });
+                l.dismiss();
+            }, (error) => {
+                l.dismiss();
+            });
+        });
     }
 };
 InicioClientePage.ctorParameters = () => [

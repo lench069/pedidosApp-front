@@ -646,6 +646,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
     /*! @ionic/storage-angular */
     "./node_modules/@ionic/storage-angular/__ivy_ngcc__/fesm2015/ionic-storage-angular.js");
+    /* harmony import */
+
+
+    var _awesome_cordova_plugins_device_ngx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+    /*! @awesome-cordova-plugins/device/ngx */
+    "./node_modules/@awesome-cordova-plugins/device/__ivy_ngcc__/ngx/index.js");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
@@ -655,7 +661,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
       entryComponents: [],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"], _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_14__["IonicStorageModule"].forRoot(), _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"]],
-      providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__["Camera"], _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_12__["Push"], _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_13__["AndroidPermissions"], _servicios_service__WEBPACK_IMPORTED_MODULE_9__["ServiciosService"], {
+      providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _awesome_cordova_plugins_device_ngx__WEBPACK_IMPORTED_MODULE_15__["Device"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__["Camera"], _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_12__["Push"], _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_13__["AndroidPermissions"], _servicios_service__WEBPACK_IMPORTED_MODULE_9__["ServiciosService"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
       }],
@@ -773,6 +779,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "Producto_Consulta",
         value: function Producto_Consulta(_id) {
           return this.http.get(this.URL_API + 'consultar-producto/' + _id);
+        }
+      }, {
+        key: "Buscar_Productos_Categoria",
+        value: function Buscar_Productos_Categoria(_id) {
+          return this.http.get(this.URL_API + 'consultar-producto-categoria/' + _id);
         }
       }, {
         key: "Producto_Guardar",

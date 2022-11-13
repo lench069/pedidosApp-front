@@ -147,6 +147,10 @@ export class ServiciosService {
     }));
   }
 
+  Pedido_Listado_cliente (idcliente: number) {
+    return this.http.get(this.URL_API + 'historial/' + idcliente);
+  }
+
   Pedido_Borrar(_id: number) {
     return this.http.post(this.URL_API + 'eliminar-pedido', this.objectToFormData({
       pedido_id: _id

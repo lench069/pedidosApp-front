@@ -26,10 +26,10 @@ export class ClientePage implements OnInit {
   }
 
   async ionViewWillEnter() {
-   /* if (this.id > 0) {
+    if (this.id > 0) {
       let l = await this.loading.create();
       l.present();
-      this.servicio.Cliente_Consulta(this.id)
+      this.servicio.Cliente_Consulta_id(this.id)
         .subscribe((data: any) => {
           l.dismiss();
           if (data.info.item.id > 0) {
@@ -47,7 +47,7 @@ export class ClientePage implements OnInit {
           this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
           this.servicio.irA('/clientes');
         });
-    }*/
+    }
   }
 
   ngOnInit() {

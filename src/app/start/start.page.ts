@@ -23,11 +23,13 @@ export class StartPage implements OnInit {
     this.storage.set('uuid', this.device.uuid);
     let l = await this.loading.create();
       l.present();
-      this.servicio.Cliente_Consulta(this.device.uuid)
+      this.servicio.Cliente_Consulta('a1feb3749ecf12fe')
         .subscribe((data: any) => {
           l.dismiss();
+          console.log(data);
           if (data.info.item.id > 0) {      
             this.servicio.irA('/inicio-cliente');
+            this.storage.set('cliente', data.info.item);
           } else {
             this.servicio.Mensaje('El cliente que intenta consultar no existe.', 'danger');
             this.servicio.irA('/registro');

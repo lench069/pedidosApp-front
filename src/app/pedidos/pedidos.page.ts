@@ -34,6 +34,7 @@ export class PedidosPage implements OnInit {
       .subscribe((data: any) => {
         this.pedidos = data.info.items;
         this.total = data.info.total;
+        console.log(this.pedidos);
         l.dismiss();
       }, (error: any) => {
         l.dismiss();

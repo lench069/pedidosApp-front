@@ -15,12 +15,16 @@ export class PedidoPage implements OnInit {
   public usuario_id: number = 0;
   public fecha: any = null;
   public estado: number = 0;
+  public subtotal: number = 0;
+  public iva: number = 0;
+  public total: number = 0;
 
   public clientes: any[] = [];
   public usuarios: any[] = [];
   public productos: any[] = [];
   public productos_listado: any[] = [];
   public _producto: any = null;
+  public pedido: any = null;
 
 
   public estados: any[] = [
@@ -86,12 +90,15 @@ export class PedidoPage implements OnInit {
         cliente_id: this.cliente_id,
         usuario_id: this.usuario_id,
         fecha: this.fecha,
-        estado: this.estado
+        estado: this.estado,
+        subtotal: this.subtotal,
+        iva: this.iva,
+        total: this.total,
       }).subscribe((data: any) => {
         l.dismiss();
         this.servicio.Mensaje(data.mensaje, data.info.id == 0 ? 'danger' : 'success');
         if (data.info.id > 0) {
-          this.servicio.irA('/pedido/' + data.info.id);
+          this.servicio.irA('/pedidos');
         }
       }, _ => {
         l.dismiss();
@@ -112,6 +119,10 @@ export class PedidoPage implements OnInit {
           this.estado = data.info.item.estado;
           this.fecha = data.info.item.fecha;
           this.productos_listado = data.info.item.items;
+          this.subtotal = data.info.item.subtotal;
+          this.iva = data.info.item.iva;
+          this.total = data.info.item.total;
+          this.pedido = data.info.item;
         } else {
           this.servicio.Mensaje('El pedido que intenta consultar no existe.', 'danger');
           this.servicio.irA('/pedidos');
@@ -149,7 +160,10 @@ export class PedidoPage implements OnInit {
       precio: producto.precio
     }).subscribe((data: any) => {
       l.dismiss();
-      // this.Cargar_Informacion();
+
+       //this.Cargar_Informacion();
+        this.calcularTotal();
+
     }, _ => {
       l.dismiss();
     });
@@ -161,6 +175,18 @@ export class PedidoPage implements OnInit {
       total += prod.cantidad * prod.precio;
     }
     return total;
+  }
+
+  calcularTotal(){
+      this.subtotal = 0;
+      console.log(this.pedido);
+      this.pedido.items.forEach(element => {
+            this.subtotal = this.subtotal + (parseFloat(element.precio) * element.cantidad);
+        });
+        console.log(this.subtotal);
+        this.iva = this.subtotal * 0.12;
+        this.total = this.subtotal + this.iva;
+    
   }
 
   async Borrar_Producto(producto: any, ionItemSliding: IonItemSliding) {

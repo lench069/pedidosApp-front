@@ -19,6 +19,7 @@ export class CarritoPage implements OnInit {
   public usuario_id: number = 0;
   public fecha: any = new Date();
   public estado: number = 0;
+  public cliente: any = {};
 
   constructor(public servicio: ServiciosService,
     public loading: LoadingController,
@@ -35,6 +36,7 @@ export class CarritoPage implements OnInit {
   {
     this.storage.create();
     let pedidos = await this.storage.get('pedidos');
+    this.cliente = await this.storage.get('cliente');
     if(pedidos != null){
       this.pedidos = pedidos;
     }else{
@@ -73,14 +75,18 @@ export class CarritoPage implements OnInit {
   }
   async pedir()
   {
+    console.log(this.subTotal);
     let l = await this.loading.create();
     l.present();
     this.servicio.Pedido_Guardar({
       id: this.id,
-      cliente_id: 1,
+      cliente_id: this.cliente.id,
       usuario_id: 1,
       fecha: this.fecha,
-      estado: 0
+      estado: 0,
+      subtotal: this.subTotal,
+      iva: this.iva,
+      total: this.Total
     }).subscribe((data: any) => {
       l.dismiss();
       this.pedidos.forEach(element => {

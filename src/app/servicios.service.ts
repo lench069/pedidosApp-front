@@ -119,8 +119,11 @@ export class ServiciosService {
   }
 
   Cliente_Consulta(_id: string) {
-    console.log('hhhh '+_id);
     return this.http.get(this.URL_API + 'consultar-cliente/' + _id);
+  }
+
+  Cliente_Consulta_id(_id: number) {
+    return this.http.get(this.URL_API + 'cliente-consulta-id/' + _id);
   }
 
   Cliente_Guardar(data: any) {
@@ -155,12 +158,16 @@ export class ServiciosService {
   }
 
   Pedido_Guardar(data: any) {
+    console.log(data);
     return this.http.post(this.URL_API + (data.id == 0 ? 'crear-pedido' : 'actualizar-pedido/' + data.id), this.objectToFormData({
       id: data.id,
       cliente_id: data.cliente_id,
       usuario_id: data.usuario_id,
       fecha: data.fecha,
-      estado: data.estado
+      estado: data.estado == 0 ? '0' : data.estado,
+      subtotal: data.subtotal,
+      iva: data.iva,
+      total: data.total
     }));
   }
 

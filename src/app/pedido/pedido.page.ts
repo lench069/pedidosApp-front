@@ -83,6 +83,7 @@ export class PedidoPage implements OnInit {
     } else if (this.fecha == null) {
       this.servicio.Mensaje('Debe seleccioanr la fecha.', 'warning');
     } else {
+      console.log(this.fecha);
       let l = await this.loading.create();
       l.present();
       this.servicio.Pedido_Guardar({

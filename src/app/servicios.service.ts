@@ -147,8 +147,11 @@ export class ServiciosService {
     }));
   }
 
-  Pedido_Listado_report() {
-    return this.http.get(this.URL_API + 'listado-pedidos' + tipo);
+  report(data: any) {
+    return this.http.post(this.URL_API + 'report', this.objectToFormData({
+      fecha_ini : data.fecha_ini,
+      fecha_fin : data.fecha_fin
+    }));
   }
 
   Pedido_Listado_cliente (idcliente: number) {

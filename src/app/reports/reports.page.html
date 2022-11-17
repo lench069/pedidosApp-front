@@ -21,7 +21,7 @@
       <ion-segment-button value="default" (click)="selectDefault()">
         <ion-label>Hoy</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="rango">
+      <ion-segment-button value="rango" (click)="selectFechas()">
         <ion-label>Rango</ion-label>
       </ion-segment-button>
     </ion-segment>
@@ -29,11 +29,11 @@
     <ion-list *ngIf="segment == 'rango'">
       <ion-item>
         <ion-label position="stacked">Desde: </ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccionar fecha" cancelText="Cancelar" doneText="Seleccionar" [(ngModel)]="fecha_ini"></ion-datetime>
+        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccionar fecha" cancelText="Cancelar" doneText="Seleccionar" [(ngModel)]="fecha_ini" (ionChange)="rangoFechas()"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Hasta: </ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccionar fecha" cancelText="Cancelar" doneText="Seleccionar" [(ngModel)]="fecha_fin"></ion-datetime>
+        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccionar fecha" cancelText="Cancelar" doneText="Seleccionar" [(ngModel)]="fecha_fin" (ionChange)="rangoFechas()"></ion-datetime>
       </ion-item>
     </ion-list>
 
@@ -62,7 +62,7 @@
 
         <ion-col>
           <ion-text>
-            {{pedido.cliente}}
+            {{pedido.nombre}}
           </ion-text>
         </ion-col>
   
@@ -72,6 +72,14 @@
           </ion-text>
         </ion-col>
     </ion-row>
-
+    <ion-list-header color="success">
+      <ion-grid>
+        <ion-row>
+          <ion-col><strong></strong></ion-col>
+          <ion-col><strong></strong></ion-col>
+          <ion-col><strong>Total: </strong>{{totalT|currency}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list-header>
   </ion-grid>
 </ion-content>

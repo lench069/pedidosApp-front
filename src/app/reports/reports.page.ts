@@ -36,6 +36,7 @@ export class ReportsPage implements OnInit {
       fecha_ini: ini,
       fecha_fin: fin
     }).subscribe((data: any) => {
+      console.log(data);
       if(data != null){
         this.pedidos = data;
         this.pedidos.forEach(element => {
@@ -45,6 +46,7 @@ export class ReportsPage implements OnInit {
         l.dismiss();
       }else{
         this.servicio.Mensaje('No hay pedidos para mostrar', 'danger');
+        l.dismiss();
       }
         
       }, (error: any) => {
@@ -57,8 +59,10 @@ export class ReportsPage implements OnInit {
     this.Pedido_Listado_report(this.fecha_ini,this.fecha_fin);
   }
   selectFechas(){
-    this.fecha_fin = null;
+    console.log('prueba');
     this.fecha_ini = null;
+    this.fecha_fin = null;
+    this.segment = 'rango';
   }
 
   async rangoFechas(){

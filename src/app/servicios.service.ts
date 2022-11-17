@@ -147,6 +147,10 @@ export class ServiciosService {
     }));
   }
 
+  Pedido_Listado_report() {
+    return this.http.get(this.URL_API + 'listado-pedidos' + tipo);
+  }
+
   Pedido_Listado_cliente (idcliente: number) {
     return this.http.get(this.URL_API + 'historial/' + idcliente);
   }

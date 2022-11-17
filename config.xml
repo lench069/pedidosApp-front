@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>InventarioApp</name>
-    <description>Aplicación a la medida para curso Udemy.</description>
-    <author email="jacastellanosc@gmail.com" href="https://ionicframework.com/">Jimmy Castellanos</author>
+    <name>Sweet&SaltyApp</name>
+    <description>Aplicación para administracion de pedidos.</description>
+    <author email="jacastellanosc@gmail.com" href="https://ionicframework.com/">Lenin V</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

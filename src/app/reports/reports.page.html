@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reportes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-grid class="ion-text-center">
+    
+    <ion-row class="ion-margin">
+      <ion-col>
+        <ion-title>
+          <ion-text >
+            Reporte de ventas
+          </ion-text>
+        </ion-title>
+      </ion-col>
+    </ion-row>
+    <ion-segment value="default"  [(ngModel)]="segment" >
+      <ion-segment-button value="default" (click)="selectDefault()">
+        <ion-label>Hoy</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="rango">
+        <ion-label>Rango</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-list *ngIf="segment == 'rango'">
+      <ion-item>
+        <ion-label position="stacked">Desde: </ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccionar fecha" cancelText="Cancelar" doneText="Seleccionar" [(ngModel)]="fecha_ini"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Hasta: </ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccionar fecha" cancelText="Cancelar" doneText="Seleccionar" [(ngModel)]="fecha_fin"></ion-datetime>
+      </ion-item>
+    </ion-list>
+
+    <ion-row class="header-row">
+
+      <ion-col>
+        <ion-text>Cliente</ion-text>
+      </ion-col>
+
+      <ion-col>
+        <ion-text>Fecha</ion-text>
+      </ion-col>
+
+      <ion-col>
+        <ion-text>Pago</ion-text>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row *ngFor="let pedido of pedidos">
+      <ion-col>
+        <ion-text>
+            {{pedido.fecha}}
+        </ion-text>
+      </ion-col>
+
+        <ion-col>
+          <ion-text>
+            {{pedido.cliente}}
+          </ion-text>
+        </ion-col>
+  
+        <ion-col>
+          <ion-text>
+            {{pedido.total|currency}}
+          </ion-text>
+        </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

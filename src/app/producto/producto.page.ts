@@ -116,7 +116,6 @@ export class ProductoPage implements OnInit {
 
     this.camara.getPicture({
       quality: 60,
-      allowEdit: true,
       targetHeight: 800,
       targetWidth: 800,
       destinationType: this.camara.DestinationType.DATA_URL,

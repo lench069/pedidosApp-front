@@ -140,28 +140,29 @@ let ClientePage = class ClientePage {
     }
     ionViewWillEnter() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            /* if (this.id > 0) {
-               let l = await this.loading.create();
-               l.present();
-               this.servicio.Cliente_Consulta(this.id)
-                 .subscribe((data: any) => {
-                   l.dismiss();
-                   if (data.info.item.id > 0) {
-                     this.identificacion = data.info.item.identificacion;
-                     this.nombre = data.info.item.nombre;
-                     this.telefono = data.info.item.telefono;
-                     this.correo = data.info.item.correo;
-                     this.direccion = data.info.item.direccion;
-                   } else {
-                     this.servicio.Mensaje('El cliente que intenta consultar no existe.', 'danger');
-                     this.servicio.irA('/clientes');
-                   }
-                 }, _ => {
-                   l.dismiss();
-                   this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
-                   this.servicio.irA('/clientes');
-                 });
-             }*/
+            if (this.id > 0) {
+                let l = yield this.loading.create();
+                l.present();
+                this.servicio.Cliente_Consulta_id(this.id)
+                    .subscribe((data) => {
+                    l.dismiss();
+                    if (data.info.item.id > 0) {
+                        this.identificacion = data.info.item.identificacion;
+                        this.nombre = data.info.item.nombre;
+                        this.telefono = data.info.item.telefono;
+                        this.correo = data.info.item.correo;
+                        this.direccion = data.info.item.direccion;
+                    }
+                    else {
+                        this.servicio.Mensaje('El cliente que intenta consultar no existe.', 'danger');
+                        this.servicio.irA('/clientes');
+                    }
+                }, _ => {
+                    l.dismiss();
+                    this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+                    this.servicio.irA('/clientes');
+                });
+            }
         });
     }
     ngOnInit() {

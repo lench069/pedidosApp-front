@@ -324,6 +324,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         _this.servicio.Mensaje(data.mensaje, data.info.id == 0 ? 'danger' : 'success');
 
                         if (data.info.id > 0) {
+                          _this.storage.set('cliente', {
+                            correo: _this.correo,
+                            direccion: _this.direccion,
+                            identificacion: _this.cedula,
+                            nombre: _this.nombre,
+                            telefono: _this.telefono
+                          });
+
                           _this.servicio.irA('/inicio-cliente');
                         }
                       }, function (error) {

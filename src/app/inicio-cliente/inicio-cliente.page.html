@@ -8,7 +8,7 @@
       <h2>Sweet & Salty</h2>
     </ion-label>
     <ion-buttons slot="end">
-      <button ion-button icon-only  (click)="servicio.irA('/carrito')" class="header-btn-cart">
+      <button ion-button icon-only  (click)="servicio.irA('/carrito')" class="header-btn-cart" style="background-color: #f8f8fa;">
         <ion-icon name="fast-food-outline" style="zoom:2.0;"></ion-icon>
         <ion-badge class="carts" item-right color="danger">{{pedidolocal!= null ? pedidolocal.length : 0}}</ion-badge>
       </button>

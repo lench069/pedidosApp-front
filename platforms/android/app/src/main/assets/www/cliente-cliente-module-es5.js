@@ -248,15 +248,52 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ionViewWillEnter",
         value: function ionViewWillEnter() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this = this;
+
+            var l;
             return regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
+                    if (!(this.id > 0)) {
+                      _context.next = 6;
+                      break;
+                    }
+
+                    _context.next = 3;
+                    return this.loading.create();
+
+                  case 3:
+                    l = _context.sent;
+                    l.present();
+                    this.servicio.Cliente_Consulta_id(this.id).subscribe(function (data) {
+                      l.dismiss();
+
+                      if (data.info.item.id > 0) {
+                        _this.identificacion = data.info.item.identificacion;
+                        _this.nombre = data.info.item.nombre;
+                        _this.telefono = data.info.item.telefono;
+                        _this.correo = data.info.item.correo;
+                        _this.direccion = data.info.item.direccion;
+                      } else {
+                        _this.servicio.Mensaje('El cliente que intenta consultar no existe.', 'danger');
+
+                        _this.servicio.irA('/clientes');
+                      }
+                    }, function (_) {
+                      l.dismiss();
+
+                      _this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+
+                      _this.servicio.irA('/clientes');
+                    });
+
+                  case 6:
                   case "end":
                     return _context.stop();
                 }
               }
-            }, _callee);
+            }, _callee, this);
           }));
         }
       }, {
@@ -266,7 +303,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "Guardar",
         value: function Guardar() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-            var _this = this;
+            var _this2 = this;
 
             var l;
             return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -339,15 +376,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }).subscribe(function (data) {
                       l.dismiss();
 
-                      _this.servicio.Mensaje(data.mensaje, data.info.id == 0 ? 'danger' : 'success');
+                      _this2.servicio.Mensaje(data.mensaje, data.info.id == 0 ? 'danger' : 'success');
 
                       if (data.info.id > 0) {
-                        _this.servicio.irA('/clientes');
+                        _this2.servicio.irA('/clientes');
                       }
                     }, function (_) {
                       l.dismiss();
 
-                      _this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+                      _this2.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
                     });
 
                   case 25:

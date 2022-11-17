@@ -245,6 +245,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.usuario_id = 0;
         this.fecha = new Date();
         this.estado = 0;
+        this.cliente = {};
       }
 
       _createClass(CarritoPage, [{
@@ -265,6 +266,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 3:
                     pedidos = _context.sent;
+                    _context.next = 6;
+                    return this.storage.get('cliente');
+
+                  case 6:
+                    this.cliente = _context.sent;
 
                     if (pedidos != null) {
                       this.pedidos = pedidos;
@@ -274,7 +280,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     this.calcularTotal();
 
-                  case 6:
+                  case 9:
                   case "end":
                     return _context.stop();
                 }
@@ -324,18 +330,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context2.prev = _context2.next) {
                   case 0:
-                    _context2.next = 2;
+                    console.log(this.subTotal);
+                    _context2.next = 3;
                     return this.loading.create();
 
-                  case 2:
+                  case 3:
                     l = _context2.sent;
                     l.present();
                     this.servicio.Pedido_Guardar({
                       id: this.id,
-                      cliente_id: 1,
+                      cliente_id: this.cliente.id,
                       usuario_id: 1,
                       fecha: this.fecha,
-                      estado: 0
+                      estado: 0,
+                      subtotal: this.subTotal,
+                      iva: this.iva,
+                      total: this.Total
                     }).subscribe(function (data) {
                       l.dismiss();
 
@@ -352,7 +362,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       _this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
                     });
 
-                  case 5:
+                  case 6:
                   case "end":
                     return _context2.stop();
                 }

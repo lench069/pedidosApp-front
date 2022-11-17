@@ -30,9 +30,9 @@
     <feature name="CDVIonicKeyboard">
         <param name="android-package" onload="true" value="io.ionic.keyboard.CDVIonicKeyboard" />
     </feature>
-    <name>InventarioApp</name>
-    <description>Aplicación a la medida para curso Udemy.</description>
-    <author email="jacastellanosc@gmail.com" href="https://ionicframework.com/">Jimmy Castellanos</author>
+    <name>Sweet and Salty</name>
+    <description>Aplicación para administracion de pedidos.</description>
+    <author email="jacastellanosc@gmail.com" href="https://ionicframework.com/">Lenin V</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

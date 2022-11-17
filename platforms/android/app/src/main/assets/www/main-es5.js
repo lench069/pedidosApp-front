@@ -166,7 +166,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-content>\n        <ion-list id=\"inbox-list\">\n          <ion-list-header>Inbox</ion-list-header>\n          <ion-note>hi@ionicframework.com</ion-note>\n\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\n            <ion-item (click)=\"selectedIndex = i\" routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\" [class.selected]=\"selectedIndex == i\">\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\n              <ion-label>{{ p.title }}</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n\n        <ion-list id=\"labels-list\">\n          <ion-list-header>Labels</ion-list-header>\n\n          <ion-item *ngFor=\"let label of labels\" lines=\"none\">\n            <ion-icon slot=\"start\" ios=\"bookmark-outline\" md=\"bookmark-sharp\"></ion-icon>\n            <ion-label>{{ label }}</ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n";
+    __webpack_exports__["default"] = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu menuId=\"first\" contentId=\"main-content\" type=\"overlay\">\n      <ion-content>\n        <ion-list id=\"inbox-list\">\n          <ion-list-header>{{cliente.nombre}}</ion-list-header>\n          <ion-note>{{cliente.correo}}</ion-note>\n\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\n            <ion-item (click)=\"selectedIndex = i\" routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\" [class.selected]=\"selectedIndex == i\">\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\n              <ion-label>{{ p.title }}</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>    \n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n";
     /***/
   },
 
@@ -377,6 +377,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return m.RegistroPageModule;
         });
       }
+    }, {
+      path: 'historial',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | historial-historial-module */
+        "historial-historial-module").then(__webpack_require__.bind(null,
+        /*! ./historial/historial.module */
+        "./src/app/historial/historial.module.ts")).then(function (m) {
+          return m.HistorialPageModule;
+        });
+      }
+    }, {
+      path: 'reports',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | reports-reports-module */
+        "reports-reports-module").then(__webpack_require__.bind(null,
+        /*! ./reports/reports.module */
+        "./src/app/reports/reports.module.ts")).then(function (m) {
+          return m.ReportsPageModule;
+        });
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {
@@ -461,42 +483,43 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! @ionic-native/status-bar/ngx */
     "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @ionic/storage-angular */
+    "./node_modules/@ionic/storage-angular/__ivy_ngcc__/fesm2015/ionic-storage-angular.js");
 
     var AppComponent = /*#__PURE__*/function () {
-      function AppComponent(platform, splashScreen, statusBar) {
+      function AppComponent(platform, splashScreen, statusBar, storage) {
         _classCallCheck(this, AppComponent);
 
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.storage = storage;
         this.selectedIndex = 0;
         this.appPages = [{
-          title: 'Inbox',
-          url: '/folder/Inbox',
-          icon: 'mail'
+          title: 'Inicio',
+          url: '/inicio-cliente',
+          icon: 'home'
+        },
+        /*{
+          title: 'Datos',
+          url: 'registro',
+          icon: 'person'
+        },*/
+        {
+          title: 'Pedidos',
+          url: 'historial',
+          icon: 'pizza'
         }, {
-          title: 'Outbox',
-          url: '/folder/Outbox',
-          icon: 'paper-plane'
-        }, {
-          title: 'Favorites',
-          url: '/folder/Favorites',
-          icon: 'heart'
-        }, {
-          title: 'Archived',
-          url: '/folder/Archived',
-          icon: 'archive'
-        }, {
-          title: 'Trash',
-          url: '/folder/Trash',
-          icon: 'trash'
-        }, {
-          title: 'Spam',
-          url: '/folder/Spam',
-          icon: 'warning'
+          title: 'Salir',
+          url: 'start',
+          icon: 'log-out'
         }];
-        this.labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
         this.initializeApp();
+        this.storage.create();
       }
 
       _createClass(AppComponent, [{
@@ -513,13 +536,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var path = window.location.pathname.split('folder/')[1];
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var path;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    _context.next = 2;
+                    return this.storage.get('cliente');
 
-          if (path !== undefined) {
-            this.selectedIndex = this.appPages.findIndex(function (page) {
-              return page.title.toLowerCase() === path.toLowerCase();
-            });
-          }
+                  case 2:
+                    this.cliente = _context.sent;
+                    path = window.location.pathname.split('folder/')[1];
+
+                    if (path !== undefined) {
+                      this.selectedIndex = this.appPages.findIndex(function (page) {
+                        return page.title.toLowerCase() === path.toLowerCase();
+                      });
+                    }
+
+                  case 5:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
         }
       }]);
 
@@ -533,6 +575,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"]
       }, {
         type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"]
+      }, {
+        type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_5__["Storage"]
       }];
     };
 
@@ -875,6 +919,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return this.http.get(this.URL_API + 'consultar-cliente/' + _id);
         }
       }, {
+        key: "Cliente_Consulta_id",
+        value: function Cliente_Consulta_id(_id) {
+          return this.http.get(this.URL_API + 'cliente-consulta-id/' + _id);
+        }
+      }, {
         key: "Cliente_Guardar",
         value: function Cliente_Guardar(data) {
           console.log(data);
@@ -902,6 +951,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         }
       }, {
+        key: "report",
+        value: function report(data) {
+          return this.http.post(this.URL_API + 'report', this.objectToFormData({
+            fecha_ini: data.fecha_ini,
+            fecha_fin: data.fecha_fin
+          }));
+        }
+      }, {
+        key: "Pedido_Listado_cliente",
+        value: function Pedido_Listado_cliente(idcliente) {
+          return this.http.get(this.URL_API + 'historial/' + idcliente);
+        }
+      }, {
         key: "Pedido_Borrar",
         value: function Pedido_Borrar(_id) {
           return this.http.post(this.URL_API + 'eliminar-pedido', this.objectToFormData({
@@ -916,12 +978,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "Pedido_Guardar",
         value: function Pedido_Guardar(data) {
+          console.log(data);
           return this.http.post(this.URL_API + (data.id == 0 ? 'crear-pedido' : 'actualizar-pedido/' + data.id), this.objectToFormData({
             id: data.id,
             cliente_id: data.cliente_id,
             usuario_id: data.usuario_id,
             fecha: data.fecha,
-            estado: data.estado
+            estado: data.estado == 0 ? '0' : data.estado,
+            subtotal: data.subtotal,
+            iva: data.iva,
+            total: data.total
           }));
         }
       }, {
@@ -975,13 +1041,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               });
 
               pushObject.on('notification').subscribe(function (notification) {
-                return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this2, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+                return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this2, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
                   var alert;
-                  return regeneratorRuntime.wrap(function _callee$(_context) {
+                  return regeneratorRuntime.wrap(function _callee2$(_context2) {
                     while (1) {
-                      switch (_context.prev = _context.next) {
+                      switch (_context2.prev = _context2.next) {
                         case 0:
-                          _context.next = 2;
+                          _context2.next = 2;
                           return this.alert.create({
                             header: notification.title,
                             message: notification.message,
@@ -991,16 +1057,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                           });
 
                         case 2:
-                          alert = _context.sent;
+                          alert = _context2.sent;
                           alert.present();
                           console.log('Notificación: ', notification);
 
                         case 5:
                         case "end":
-                          return _context.stop();
+                          return _context2.stop();
                       }
                     }
-                  }, _callee, this);
+                  }, _callee2, this);
                 }));
               });
               pushObject.on('registration').subscribe(function (registration) {
@@ -1018,13 +1084,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "Mensaje",
         value: function Mensaje(texto) {
           var tipo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
             var t;
-            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
               while (1) {
-                switch (_context2.prev = _context2.next) {
+                switch (_context3.prev = _context3.next) {
                   case 0:
-                    _context2.next = 2;
+                    _context3.next = 2;
                     return this.toast.create({
                       message: texto,
                       color: tipo,
@@ -1032,15 +1098,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
 
                   case 2:
-                    t = _context2.sent;
+                    t = _context3.sent;
                     t.present();
 
                   case 4:
                   case "end":
-                    return _context2.stop();
+                    return _context3.stop();
                 }
               }
-            }, _callee2, this);
+            }, _callee3, this);
           }));
         }
       }, {

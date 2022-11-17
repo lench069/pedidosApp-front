@@ -237,7 +237,6 @@ let ProductoPage = class ProductoPage {
     Capturar_Foto() {
         this.camara.getPicture({
             quality: 60,
-            allowEdit: true,
             targetHeight: 800,
             targetWidth: 800,
             destinationType: this.camara.DestinationType.DATA_URL,

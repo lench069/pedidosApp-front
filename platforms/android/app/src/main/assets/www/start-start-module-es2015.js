@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"danger\">\n      <ion-title>Inicio</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <br>\n  <br><br>\n  <br><br>\n  <ion-grid>\n      <ion-row>\n          <ion-col>\n              <ion-card color=\"primary\" (click)=\"validate()\">\n                  <ion-card-content>\n                      <ion-icon name=\"people-outline\"></ion-icon>\n                  </ion-card-content>\n                  <ion-card-header>\n                      <ion-card-title>Zona Clientes</ion-card-title>\n                  </ion-card-header>\n              </ion-card>\n          </ion-col>\n         \n      </ion-row>\n      <ion-col>\n          <ion-card color=\"dark\" (click)=\"servicio.irA('/login')\">\n              <ion-card-content>\n                  <ion-icon name=\"people-circle-outline\"></ion-icon>\n              </ion-card-content>\n              <ion-card-header>\n                  <ion-card-title>Zona Admin</ion-card-title>\n              </ion-card-header>\n          </ion-card>\n      </ion-col>\n      <ion-row>\n      </ion-row>\n  </ion-grid>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"dark\">\n      <ion-title>Inicio</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <br>\n  <br><br>\n  <br><br>\n  <br>\n  <ion-grid>\n      <ion-row>\n          <ion-col>\n              <ion-card color=\"warning\" (click)=\"validate()\">\n                  <ion-card-content>\n                      <ion-icon name=\"people-outline\"></ion-icon>\n                  </ion-card-content>\n                  <ion-card-header>\n                      <ion-card-title>Zona Clientes</ion-card-title>\n                  </ion-card-header>\n              </ion-card>\n          </ion-col>\n         \n      </ion-row>\n      <ion-col>\n          <ion-card color=\"dark\" (click)=\"servicio.irA('/login')\">\n              <ion-card-content>\n                  <ion-icon name=\"people-circle-outline\"></ion-icon>\n              </ion-card-content>\n              <ion-card-header>\n                  <ion-card-title>Zona Admin</ion-card-title>\n              </ion-card-header>\n          </ion-card>\n      </ion-col>\n      <ion-row>\n      </ion-row>\n  </ion-grid>\n</ion-content>");
 
 /***/ }),
 
@@ -143,11 +143,13 @@ let StartPage = class StartPage {
             this.storage.set('uuid', this.device.uuid);
             let l = yield this.loading.create();
             l.present();
-            this.servicio.Cliente_Consulta(this.device.uuid)
+            this.servicio.Cliente_Consulta('a1feb3749ecf12fe')
                 .subscribe((data) => {
                 l.dismiss();
+                console.log(data);
                 if (data.info.item.id > 0) {
                     this.servicio.irA('/inicio-cliente');
+                    this.storage.set('cliente', data.info.item);
                 }
                 else {
                     this.servicio.Mensaje('El cliente que intenta consultar no existe.', 'danger');

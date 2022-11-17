@@ -140,6 +140,7 @@ let CarritoPage = class CarritoPage {
         this.usuario_id = 0;
         this.fecha = new Date();
         this.estado = 0;
+        this.cliente = {};
     }
     ngOnInit() {
     }
@@ -147,6 +148,7 @@ let CarritoPage = class CarritoPage {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             this.storage.create();
             let pedidos = yield this.storage.get('pedidos');
+            this.cliente = yield this.storage.get('cliente');
             if (pedidos != null) {
                 this.pedidos = pedidos;
             }
@@ -182,14 +184,18 @@ let CarritoPage = class CarritoPage {
     }
     pedir() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            console.log(this.subTotal);
             let l = yield this.loading.create();
             l.present();
             this.servicio.Pedido_Guardar({
                 id: this.id,
-                cliente_id: 1,
+                cliente_id: this.cliente.id,
                 usuario_id: 1,
                 fecha: this.fecha,
-                estado: 0
+                estado: 0,
+                subtotal: this.subTotal,
+                iva: this.iva,
+                total: this.Total
             }).subscribe((data) => {
                 l.dismiss();
                 this.pedidos.forEach(element => {

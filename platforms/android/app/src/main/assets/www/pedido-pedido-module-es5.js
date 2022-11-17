@@ -27,7 +27,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"warning\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" defaultHref=\"pedidos\"></ion-back-button>\n    </ion-buttons>\n    <ion-title size=\"small\">{{id == 0 ? 'Nuevo' : 'Editar'}} pedido {{id == 0 ? '' : id}}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"Guardar()\">\n        <ion-icon name=\"save\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item>\n      <ion-label position=\"stacked\">Cliente</ion-label>\n      <ion-select placeholder=\"Seleccionar\" [(ngModel)]=\"cliente_id\" [disabled]=\"id != 0\" okText=\"Seleccionar\" cancelText=\"Cancelar\">\n        <ion-select-option [value]=\"cliente.id\" *ngFor=\"let cliente of clientes\">{{cliente.nombre}}</ion-select-option>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Vendedor</ion-label>\n      <ion-select placeholder=\"Seleccionar\" [(ngModel)]=\"usuario_id\" okText=\"Seleccionar\" cancelText=\"Cancelar\">\n        <ion-select-option [value]=\"usuario.id\" *ngFor=\"let usuario of usuarios\">{{usuario.nombre}}</ion-select-option>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Fecha</ion-label>\n      <ion-datetime displayFormat=\"DD/MM/YYYY\" placeholder=\"Seleccionar fecha\" cancelText=\"Cancelar\" doneText=\"Seleccionar\" [(ngModel)]=\"fecha\"></ion-datetime>\n    </ion-item>\n    <ion-item *ngIf=\"id != 0\">\n      <ion-label position=\"stacked\">Estado</ion-label>\n      <ion-select placeholder=\"Seleccionar\" [(ngModel)]=\"estado\" okText=\"Seleccionar\" cancelText=\"Cancelar\">\n        <ion-select-option [value]=\"est.id\" *ngFor=\"let est of estados\">{{est.texto}}</ion-select-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item *ngIf=\"id != 0\">\n      <ion-label position=\"stacked\">Productos</ion-label>\n      <ion-select placeholder=\"Seleccionar\" [(ngModel)]=\"_producto\" okText=\"Seleccionar\" cancelText=\"Cancelar\" (ionChange)=\"Prod_Seleccionado()\">\n        <ion-select-option [value]=\"producto\" *ngFor=\"let producto of productos\">{{producto.nombre}}</ion-select-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-list-header color=\"danger\">\n      Detalle productos\n    </ion-list-header>\n    <ion-item-sliding *ngFor=\"let _prod of productos_listado\" #ionItemSliding>\n      <ion-item>\n        <ion-label text-wrap>\n          <h3>{{_prod.nombre|uppercase}}</h3>\n          <p><b>Precio:</b> ${{_prod.precio|number}}</p>\n        </ion-label>\n        <ion-input slot=\"end\" [(ngModel)]=\"_prod.cantidad\" (ionChange)=\"Mod_Producto(_prod)\" type=\"number\"></ion-input>\n      </ion-item>\n      <ion-item-options side=\"end\">\n        <ion-item-option color=\"danger\" (click)=\"Borrar_Producto(_prod, ionItemSliding)\">\n          <ion-icon name=\"trash\"></ion-icon>\n        </ion-item-option>\n      </ion-item-options>\n    </ion-item-sliding>\n    <ion-list-header color=\"success\">\n      Total: ${{Calcular_Total()|number}}\n    </ion-list-header>\n  </ion-list>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"warning\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" defaultHref=\"pedidos\"></ion-back-button>\n    </ion-buttons>\n    <ion-title size=\"small\">{{id == 0 ? 'Nuevo' : 'Editar'}} pedido {{id == 0 ? '' : id}}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"Guardar()\">\n        <ion-icon name=\"save\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item>\n      <ion-label position=\"stacked\">Cliente</ion-label>\n      <ion-select placeholder=\"Seleccionar\" [(ngModel)]=\"cliente_id\" [disabled]=\"id != 0\" okText=\"Seleccionar\" cancelText=\"Cancelar\">\n        <ion-select-option [value]=\"cliente.id\" *ngFor=\"let cliente of clientes\">{{cliente.nombre}}</ion-select-option>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Atendido por:</ion-label>\n      <ion-select placeholder=\"Seleccionar\" [(ngModel)]=\"usuario_id\" okText=\"Seleccionar\" cancelText=\"Cancelar\">\n        <ion-select-option [value]=\"usuario.id\" *ngFor=\"let usuario of usuarios\">{{usuario.nombre}}</ion-select-option>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label position=\"stacked\">Fecha</ion-label>\n      <ion-datetime displayFormat=\"DD/MM/YYYY\" placeholder=\"Seleccionar fecha\" [disabled]=\"id != 0\" cancelText=\"Cancelar\" doneText=\"Seleccionar\" [(ngModel)]=\"fecha\"></ion-datetime>\n    </ion-item>\n    <ion-item *ngIf=\"id != 0\">\n      <ion-label position=\"stacked\">Estado</ion-label>\n      <ion-select placeholder=\"Seleccionar\" [(ngModel)]=\"estado\" okText=\"Seleccionar\" cancelText=\"Cancelar\">\n        <ion-select-option [value]=\"est.id\" *ngFor=\"let est of estados\">{{est.texto}}</ion-select-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item *ngIf=\"id != 0\">\n      <ion-label position=\"stacked\">Productos</ion-label>\n      <ion-select placeholder=\"Seleccionar\" [(ngModel)]=\"_producto\" okText=\"Seleccionar\" cancelText=\"Cancelar\" (ionChange)=\"Prod_Seleccionado()\">\n        <ion-select-option [value]=\"producto\" *ngFor=\"let producto of productos\">{{producto.nombre}}</ion-select-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-list-header color=\"danger\">\n      Detalle productos\n    </ion-list-header>\n    <ion-item-sliding *ngFor=\"let _prod of productos_listado\" #ionItemSliding>\n      <ion-item>\n        <ion-label text-wrap>\n          <h3>{{_prod.nombre|uppercase}}</h3>\n          <p><b>Precio:</b> ${{_prod.precio|number}}</p>\n        </ion-label>\n        <ion-input slot=\"end\" [(ngModel)]=\"_prod.cantidad\" (ionChange)=\"Mod_Producto(_prod)\" type=\"number\"></ion-input>\n      </ion-item>\n      <ion-item-options side=\"end\">\n        <ion-item-option color=\"danger\" (click)=\"Borrar_Producto(_prod, ionItemSliding)\">\n          <ion-icon name=\"trash\"></ion-icon>\n        </ion-item-option>\n      </ion-item-options>\n    </ion-item-sliding>\n    <ion-list-header color=\"success\">\n      <ion-grid>\n        <ion-row>\n          <ion-col><strong>Subtotal: </strong>{{subtotal|currency}}</ion-col>\n          <ion-col><strong>Iva: </strong>{{iva|currency}}</ion-col>\n          <ion-col><strong>Total: </strong>{{total|currency}}</ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-list-header>\n  </ion-list>\n</ion-content>";
     /***/
   },
 
@@ -247,11 +247,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.usuario_id = 0;
         this.fecha = null;
         this.estado = 0;
+        this.subtotal = 0;
+        this.iva = 0;
+        this.total = 0;
         this.clientes = [];
         this.usuarios = [];
         this.productos = [];
         this.productos_listado = [];
         this._producto = null;
+        this.pedido = null;
         this.estados = [{
           id: 0,
           texto: 'Creado'
@@ -317,7 +321,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     this.servicio.Mensaje('Debe seleccionar el cliente.', 'warning');
-                    _context2.next = 17;
+                    _context2.next = 18;
                     break;
 
                   case 4:
@@ -327,7 +331,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     this.servicio.Mensaje('Debe seleccionar el vendedor.', 'warning');
-                    _context2.next = 17;
+                    _context2.next = 18;
                     break;
 
                   case 8:
@@ -337,14 +341,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     this.servicio.Mensaje('Debe seleccioanr la fecha.', 'warning');
-                    _context2.next = 17;
+                    _context2.next = 18;
                     break;
 
                   case 12:
-                    _context2.next = 14;
+                    console.log(this.fecha);
+                    _context2.next = 15;
                     return this.loading.create();
 
-                  case 14:
+                  case 15:
                     l = _context2.sent;
                     l.present();
                     this.servicio.Pedido_Guardar({
@@ -352,14 +357,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       cliente_id: this.cliente_id,
                       usuario_id: this.usuario_id,
                       fecha: this.fecha,
-                      estado: this.estado
+                      estado: this.estado,
+                      subtotal: this.subtotal,
+                      iva: this.iva,
+                      total: this.total
                     }).subscribe(function (data) {
                       l.dismiss();
 
                       _this2.servicio.Mensaje(data.mensaje, data.info.id == 0 ? 'danger' : 'success');
 
                       if (data.info.id > 0) {
-                        _this2.servicio.irA('/pedido/' + data.info.id);
+                        _this2.servicio.irA('/pedidos');
                       }
                     }, function (_) {
                       l.dismiss();
@@ -367,7 +375,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       _this2.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
                     });
 
-                  case 17:
+                  case 18:
                   case "end":
                     return _context2.stop();
                 }
@@ -401,6 +409,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         _this3.estado = data.info.item.estado;
                         _this3.fecha = data.info.item.fecha;
                         _this3.productos_listado = data.info.item.items;
+                        _this3.subtotal = data.info.item.subtotal;
+                        _this3.iva = data.info.item.iva;
+                        _this3.total = data.info.item.total;
+                        _this3.pedido = data.info.item;
                       } else {
                         _this3.servicio.Mensaje('El pedido que intenta consultar no existe.', 'danger');
 
@@ -464,6 +476,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "Mod_Producto",
         value: function Mod_Producto(producto) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+            var _this5 = this;
+
             var l;
             return regeneratorRuntime.wrap(function _callee5$(_context5) {
               while (1) {
@@ -481,7 +495,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       cantidad: producto.cantidad,
                       precio: producto.precio
                     }).subscribe(function (data) {
-                      l.dismiss(); // this.Cargar_Informacion();
+                      l.dismiss(); //this.Cargar_Informacion();
+
+                      _this5.calcularTotal();
                     }, function (_) {
                       l.dismiss();
                     });
@@ -516,10 +532,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return total;
         }
       }, {
+        key: "calcularTotal",
+        value: function calcularTotal() {
+          var _this6 = this;
+
+          this.subtotal = 0;
+          console.log(this.pedido);
+          this.pedido.items.forEach(function (element) {
+            _this6.subtotal = _this6.subtotal + parseFloat(element.precio) * element.cantidad;
+          });
+          console.log(this.subtotal);
+          this.iva = this.subtotal * 0.12;
+          this.total = this.subtotal + this.iva;
+        }
+      }, {
         key: "Borrar_Producto",
         value: function Borrar_Producto(producto, ionItemSliding) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
-            var _this5 = this;
+            var _this7 = this;
 
             var alert;
             return regeneratorRuntime.wrap(function _callee7$(_context7) {
@@ -534,8 +564,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       buttons: [{
                         text: 'Si',
                         handler: function handler() {
-                          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this5, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-                            var _this6 = this;
+                          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this7, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+                            var _this8 = this;
 
                             var l;
                             return regeneratorRuntime.wrap(function _callee6$(_context6) {
@@ -554,7 +584,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                     }).subscribe(function (data) {
                                       l.dismiss();
 
-                                      _this6.Cargar_Informacion();
+                                      _this8.Cargar_Informacion();
                                     }, function (_) {
                                       l.dismiss();
                                     });

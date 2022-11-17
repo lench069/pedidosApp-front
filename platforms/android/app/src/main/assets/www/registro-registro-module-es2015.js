@@ -185,6 +185,13 @@ let RegistroPage = class RegistroPage {
                     l.dismiss();
                     this.servicio.Mensaje(data.mensaje, data.info.id == 0 ? 'danger' : 'success');
                     if (data.info.id > 0) {
+                        this.storage.set('cliente', {
+                            correo: this.correo,
+                            direccion: this.direccion,
+                            identificacion: this.cedula,
+                            nombre: this.nombre,
+                            telefono: this.telefono
+                        });
                         this.servicio.irA('/inicio-cliente');
                     }
                 }, (error) => {

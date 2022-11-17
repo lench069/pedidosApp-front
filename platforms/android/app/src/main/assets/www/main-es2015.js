@@ -436,7 +436,7 @@ module.exports = webpackAsyncContext;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-content>\n        <ion-list id=\"inbox-list\">\n          <ion-list-header>Inbox</ion-list-header>\n          <ion-note>hi@ionicframework.com</ion-note>\n\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\n            <ion-item (click)=\"selectedIndex = i\" routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\" [class.selected]=\"selectedIndex == i\">\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\n              <ion-label>{{ p.title }}</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n\n        <ion-list id=\"labels-list\">\n          <ion-list-header>Labels</ion-list-header>\n\n          <ion-item *ngFor=\"let label of labels\" lines=\"none\">\n            <ion-icon slot=\"start\" ios=\"bookmark-outline\" md=\"bookmark-sharp\"></ion-icon>\n            <ion-label>{{ label }}</ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu menuId=\"first\" contentId=\"main-content\" type=\"overlay\">\n      <ion-content>\n        <ion-list id=\"inbox-list\">\n          <ion-list-header>{{cliente.nombre}}</ion-list-header>\n          <ion-note>{{cliente.correo}}</ion-note>\n\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\n            <ion-item (click)=\"selectedIndex = i\" routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\" [class.selected]=\"selectedIndex == i\">\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\n              <ion-label>{{ p.title }}</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>    \n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n");
 
 /***/ }),
 
@@ -521,6 +521,14 @@ const routes = [
     {
         path: 'registro',
         loadChildren: () => __webpack_require__.e(/*! import() | registro-registro-module */ "registro-registro-module").then(__webpack_require__.bind(null, /*! ./registro/registro.module */ "./src/app/registro/registro.module.ts")).then(m => m.RegistroPageModule)
+    },
+    {
+        path: 'historial',
+        loadChildren: () => __webpack_require__.e(/*! import() | historial-historial-module */ "historial-historial-module").then(__webpack_require__.bind(null, /*! ./historial/historial.module */ "./src/app/historial/historial.module.ts")).then(m => m.HistorialPageModule)
+    },
+    {
+        path: 'reports',
+        loadChildren: () => __webpack_require__.e(/*! import() | reports-reports-module */ "reports-reports-module").then(__webpack_require__.bind(null, /*! ./reports/reports.module */ "./src/app/reports/reports.module.ts")).then(m => m.ReportsPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -566,51 +574,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/storage-angular */ "./node_modules/@ionic/storage-angular/__ivy_ngcc__/fesm2015/ionic-storage-angular.js");
+
 
 
 
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, splashScreen, statusBar) {
+    constructor(platform, splashScreen, statusBar, storage) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.storage = storage;
         this.selectedIndex = 0;
         this.appPages = [
             {
-                title: 'Inbox',
-                url: '/folder/Inbox',
-                icon: 'mail'
+                title: 'Inicio',
+                url: '/inicio-cliente',
+                icon: 'home'
+            },
+            /*{
+              title: 'Datos',
+              url: 'registro',
+              icon: 'person'
+            },*/
+            {
+                title: 'Pedidos',
+                url: 'historial',
+                icon: 'pizza'
             },
             {
-                title: 'Outbox',
-                url: '/folder/Outbox',
-                icon: 'paper-plane'
-            },
-            {
-                title: 'Favorites',
-                url: '/folder/Favorites',
-                icon: 'heart'
-            },
-            {
-                title: 'Archived',
-                url: '/folder/Archived',
-                icon: 'archive'
-            },
-            {
-                title: 'Trash',
-                url: '/folder/Trash',
-                icon: 'trash'
-            },
-            {
-                title: 'Spam',
-                url: '/folder/Spam',
-                icon: 'warning'
+                title: 'Salir',
+                url: 'start',
+                icon: 'log-out'
             }
         ];
-        this.labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
         this.initializeApp();
+        this.storage.create();
     }
     initializeApp() {
         this.platform.ready().then(() => {
@@ -619,16 +620,20 @@ let AppComponent = class AppComponent {
         });
     }
     ngOnInit() {
-        const path = window.location.pathname.split('folder/')[1];
-        if (path !== undefined) {
-            this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-        }
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.cliente = yield this.storage.get('cliente');
+            const path = window.location.pathname.split('folder/')[1];
+            if (path !== undefined) {
+                this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+            }
+        });
     }
 };
 AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
     { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
-    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] }
+    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
+    { type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_5__["Storage"] }
 ];
 AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -830,6 +835,9 @@ let ServiciosService = class ServiciosService {
     Cliente_Consulta(_id) {
         return this.http.get(this.URL_API + 'consultar-cliente/' + _id);
     }
+    Cliente_Consulta_id(_id) {
+        return this.http.get(this.URL_API + 'cliente-consulta-id/' + _id);
+    }
     Cliente_Guardar(data) {
         console.log(data);
         return this.http.post(this.URL_API + (data.id == 0 ? 'crear-cliente' : 'actualizar-cliente/' + data.id), this.objectToFormData({
@@ -849,6 +857,15 @@ let ServiciosService = class ServiciosService {
             texto: _texto
         }));
     }
+    report(data) {
+        return this.http.post(this.URL_API + 'report', this.objectToFormData({
+            fecha_ini: data.fecha_ini,
+            fecha_fin: data.fecha_fin
+        }));
+    }
+    Pedido_Listado_cliente(idcliente) {
+        return this.http.get(this.URL_API + 'historial/' + idcliente);
+    }
     Pedido_Borrar(_id) {
         return this.http.post(this.URL_API + 'eliminar-pedido', this.objectToFormData({
             pedido_id: _id
@@ -858,12 +875,16 @@ let ServiciosService = class ServiciosService {
         return this.http.get(this.URL_API + 'consultar-pedido/' + _id);
     }
     Pedido_Guardar(data) {
+        console.log(data);
         return this.http.post(this.URL_API + (data.id == 0 ? 'crear-pedido' : 'actualizar-pedido/' + data.id), this.objectToFormData({
             id: data.id,
             cliente_id: data.cliente_id,
             usuario_id: data.usuario_id,
             fecha: data.fecha,
-            estado: data.estado
+            estado: data.estado == 0 ? '0' : data.estado,
+            subtotal: data.subtotal,
+            iva: data.iva,
+            total: data.total
         }));
     }
     Pedido_Guardar_Producto(data) {

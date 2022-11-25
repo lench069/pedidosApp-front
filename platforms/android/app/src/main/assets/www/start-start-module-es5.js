@@ -267,7 +267,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 4:
                     l = _context.sent;
                     l.present();
-                    this.servicio.Cliente_Consulta('a1feb3749ecf12fe').subscribe(function (data) {
+                    this.servicio.Cliente_Consulta('a1feb3749ecf12fe') //this.servicio.Cliente_Consulta(this.device.uuid)
+                    .subscribe(function (data) {
                       l.dismiss();
                       console.log(data);
 

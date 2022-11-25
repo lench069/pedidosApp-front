@@ -24,6 +24,7 @@ export class StartPage implements OnInit {
     let l = await this.loading.create();
       l.present();
       this.servicio.Cliente_Consulta('a1feb3749ecf12fe')
+      //this.servicio.Cliente_Consulta(this.device.uuid)
         .subscribe((data: any) => {
           l.dismiss();
           console.log(data);

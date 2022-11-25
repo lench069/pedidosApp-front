@@ -30,6 +30,10 @@
       <ion-label position="stacked">Fecha</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccionar fecha" [disabled]="id != 0" cancelText="Cancelar" doneText="Seleccionar" [(ngModel)]="fecha"></ion-datetime>
     </ion-item>
+    <ion-item>
+      <ion-label position="stacked"># Mesa</ion-label>
+      <ion-input [(ngModel)]="mesa" type="number" disabled></ion-input>
+    </ion-item>
     <ion-item *ngIf="id != 0">
       <ion-label position="stacked">Estado</ion-label>
       <ion-select placeholder="Seleccionar" [(ngModel)]="estado" okText="Seleccionar" cancelText="Cancelar">

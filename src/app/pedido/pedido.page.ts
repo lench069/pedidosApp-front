@@ -18,6 +18,7 @@ export class PedidoPage implements OnInit {
   public subtotal: number = 0;
   public iva: number = 0;
   public total: number = 0;
+  public mesa: number = 0;
 
   public clientes: any[] = [];
   public usuarios: any[] = [];
@@ -113,6 +114,7 @@ export class PedidoPage implements OnInit {
     l.present();
     this.servicio.Pedido_Consulta(this.id)
       .subscribe((data: any) => {
+        console.log(data.info.item.mesa);
         l.dismiss();
         if (data.info.item.id > 0) {
           this.cliente_id = data.info.item.cliente_id;
@@ -124,6 +126,7 @@ export class PedidoPage implements OnInit {
           this.iva = data.info.item.iva;
           this.total = data.info.item.total;
           this.pedido = data.info.item;
+          this.mesa = data.info.item.mesa;
         } else {
           this.servicio.Mensaje('El pedido que intenta consultar no existe.', 'danger');
           this.servicio.irA('/pedidos');

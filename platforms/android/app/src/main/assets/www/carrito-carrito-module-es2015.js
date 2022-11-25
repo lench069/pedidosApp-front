@@ -184,29 +184,78 @@ let CarritoPage = class CarritoPage {
     }
     pedir() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            console.log(this.subTotal);
-            let l = yield this.loading.create();
-            l.present();
-            this.servicio.Pedido_Guardar({
-                id: this.id,
-                cliente_id: this.cliente.id,
-                usuario_id: 1,
-                fecha: this.fecha,
-                estado: 0,
-                subtotal: this.subTotal,
-                iva: this.iva,
-                total: this.Total
-            }).subscribe((data) => {
-                l.dismiss();
-                this.pedidos.forEach(element => {
-                    this.guardarDetalle(data.info.id, element);
-                });
-                this.storage.remove('pedidos');
-                this.servicio.irA('/inicio-cliente');
-            }, _ => {
-                l.dismiss();
-                this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+            const alert = yield this.alert.create({
+                header: 'Ingrese el numero de mesa',
+                buttons: [{
+                        text: 'No',
+                        cssClass: 'alert-button-cancel',
+                        handler: () => { console.log('CANCEL'); }
+                    },
+                    {
+                        text: 'Yes',
+                        cssClass: 'alert-button-confirm',
+                        handler: (data) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                            console.log(this.subTotal);
+                            let l = yield this.loading.create();
+                            l.present();
+                            this.servicio.Pedido_Guardar({
+                                id: this.id,
+                                cliente_id: this.cliente.id,
+                                usuario_id: 1,
+                                fecha: this.fecha,
+                                estado: 0,
+                                subtotal: this.subTotal,
+                                iva: this.iva,
+                                total: this.Total,
+                                mesa: data[0]
+                            }).subscribe((data) => {
+                                l.dismiss();
+                                this.pedidos.forEach(element => {
+                                    this.guardarDetalle(data.info.id, element);
+                                });
+                                this.storage.remove('pedidos');
+                                this.servicio.irA('/inicio-cliente');
+                            }, _ => {
+                                l.dismiss();
+                                this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+                            });
+                        })
+                    }],
+                inputs: [
+                    {
+                        id: 'mesa',
+                        type: 'number',
+                        placeholder: '# Mesa',
+                        min: 1,
+                        max: 10,
+                    },
+                ],
             });
+            yield alert.present();
+            /* console.log(this.subTotal);
+             let l = await this.loading.create();
+             l.present();
+             this.servicio.Pedido_Guardar({
+               id: this.id,
+               cliente_id: this.cliente.id,
+               usuario_id: 1,
+               fecha: this.fecha,
+               estado: 0,
+               subtotal: this.subTotal,
+               iva: this.iva,
+               total: this.Total
+             }).subscribe((data: any) => {
+               l.dismiss();
+               this.pedidos.forEach(element => {
+                 this.guardarDetalle(data.info.id, element);
+               });
+               this.storage.remove('pedidos');
+               this.servicio.irA('/inicio-cliente')
+               
+             }, _ => {
+               l.dismiss();
+               this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+             });*/
         });
     }
     calcularTotal() {

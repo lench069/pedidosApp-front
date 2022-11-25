@@ -10,6 +10,7 @@ import { Push, PushObject } from '@ionic-native/push/ngx';
 export class ServiciosService {
 
   private URL_API: string = 'http://192.168.100.94/pedidosApp-back/';
+  //private URL_API: string = 'http://riobytes.com/pedidosApp-back/';
 
   constructor(
     private router: Router,
@@ -178,7 +179,8 @@ export class ServiciosService {
       estado: data.estado == 0 ? '0' : data.estado,
       subtotal: data.subtotal,
       iva: data.iva,
-      total: data.total
+      total: data.total,
+      mesa: data.mesa,
     }));
   }
 

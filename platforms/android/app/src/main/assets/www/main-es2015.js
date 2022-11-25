@@ -749,7 +749,8 @@ let ServiciosService = class ServiciosService {
         this.alert = alert;
         this.push = push;
         this.toast = toast;
-        this.URL_API = 'http://192.168.100.94/pedidosApp-back/';
+        //private URL_API: string = 'http://192.168.100.94/pedidosApp-back/';
+        this.URL_API = 'http://riobytes.com/pedidosApp-back/';
     }
     irA(url) {
         this.router.navigateByUrl(url);
@@ -884,7 +885,8 @@ let ServiciosService = class ServiciosService {
             estado: data.estado == 0 ? '0' : data.estado,
             subtotal: data.subtotal,
             iva: data.iva,
-            total: data.total
+            total: data.total,
+            mesa: data.mesa,
         }));
     }
     Pedido_Guardar_Producto(data) {

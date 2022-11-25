@@ -789,8 +789,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.http = http;
         this.alert = alert;
         this.push = push;
-        this.toast = toast;
-        this.URL_API = 'http://192.168.100.94/pedidosApp-back/';
+        this.toast = toast; //private URL_API: string = 'http://192.168.100.94/pedidosApp-back/';
+
+        this.URL_API = 'http://riobytes.com/pedidosApp-back/';
       }
 
       _createClass(ServiciosService, [{
@@ -987,7 +988,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             estado: data.estado == 0 ? '0' : data.estado,
             subtotal: data.subtotal,
             iva: data.iva,
-            total: data.total
+            total: data.total,
+            mesa: data.mesa
           }));
         }
       }, {

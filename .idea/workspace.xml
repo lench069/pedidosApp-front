@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9c5af1f5-6d15-44b9-829e-ee296a4119fe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/platforms/android/android.json" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/android.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/inicio-cliente-inicio-cliente-module-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/inicio-cliente-inicio-cliente-module-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/inicio-cliente-inicio-cliente-module-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/inicio-cliente-inicio-cliente-module-es2015.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/inicio-cliente-inicio-cliente-module-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/inicio-cliente-inicio-cliente-module-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/inicio-cliente-inicio-cliente-module-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/inicio-cliente-inicio-cliente-module-es5.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/main-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/main-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/main-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/main-es2015.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/main-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/main-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/main-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/main-es5.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/reports-reports-module-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/reports-reports-module-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/reports-reports-module-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/reports-reports-module-es2015.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/reports-reports-module-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/reports-reports-module-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/reports-reports-module-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/reports-reports-module-es5.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/start-start-module-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/start-start-module-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/start-start-module-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/start-start-module-es2015.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/start-start-module-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/start-start-module-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/start-start-module-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/start-start-module-es5.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/inicio-cliente/inicio-cliente.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/inicio-cliente/inicio-cliente.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/reports/reports.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/reports/reports.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/servicios.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/servicios.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/start/start.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/start/start.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/inicio-cliente-inicio-cliente-module-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/inicio-cliente-inicio-cliente-module-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/inicio-cliente-inicio-cliente-module-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/inicio-cliente-inicio-cliente-module-es2015.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/inicio-cliente-inicio-cliente-module-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/inicio-cliente-inicio-cliente-module-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/inicio-cliente-inicio-cliente-module-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/inicio-cliente-inicio-cliente-module-es5.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/main-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/main-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/main-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/main-es2015.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/main-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/main-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/main-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/main-es5.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/reports-reports-module-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/reports-reports-module-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/reports-reports-module-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/reports-reports-module-es2015.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/reports-reports-module-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/reports-reports-module-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/reports-reports-module-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/reports-reports-module-es5.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/start-start-module-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/start-start-module-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/start-start-module-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/start-start-module-es2015.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/start-start-module-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/start-start-module-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/start-start-module-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/start-start-module-es5.js.map" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2HnJ8y78QohEaL9aAHxk2DcaFWI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/wamp64/www/Repicar",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="npm.Angular CLI Server">
+    <configuration name="Tests (app)" type="JavaScriptTestRunnerKarma">
+      <config-file value="$PROJECT_DIR$/karma.conf.js" />
+      <working-directory value="$PROJECT_DIR$" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="E2E Tests (app)" type="JavaScriptTestRunnerProtractor">
+      <config-file value="$PROJECT_DIR$/e2e/protractor.conf.js" />
+      <node-interpreter value="project" />
+      <protractor-options value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c5af1f5-6d15-44b9-829e-ee296a4119fe" name="Changes" comment="" />
+      <created>1668914758886</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1668914758886</updated>
+      <workItem from="1668914762629" duration="61000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

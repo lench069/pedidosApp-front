@@ -322,65 +322,110 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "pedir",
         value: function pedir() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
             var _this = this;
 
-            var l;
-            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            var alert;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
               while (1) {
-                switch (_context2.prev = _context2.next) {
+                switch (_context3.prev = _context3.next) {
                   case 0:
-                    console.log(this.subTotal);
-                    _context2.next = 3;
-                    return this.loading.create();
+                    _context3.next = 2;
+                    return this.alert.create({
+                      header: 'Ingrese el numero de mesa',
+                      buttons: [{
+                        text: 'No',
+                        cssClass: 'alert-button-cancel',
+                        handler: function handler() {
+                          console.log('CANCEL');
+                        }
+                      }, {
+                        text: 'Yes',
+                        cssClass: 'alert-button-confirm',
+                        handler: function handler(data) {
+                          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+                            var _this2 = this;
 
-                  case 3:
-                    l = _context2.sent;
-                    l.present();
-                    this.servicio.Pedido_Guardar({
-                      id: this.id,
-                      cliente_id: this.cliente.id,
-                      usuario_id: 1,
-                      fecha: this.fecha,
-                      estado: 0,
-                      subtotal: this.subTotal,
-                      iva: this.iva,
-                      total: this.Total
-                    }).subscribe(function (data) {
-                      l.dismiss();
+                            var l;
+                            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                              while (1) {
+                                switch (_context2.prev = _context2.next) {
+                                  case 0:
+                                    console.log(this.subTotal);
+                                    _context2.next = 3;
+                                    return this.loading.create();
 
-                      _this.pedidos.forEach(function (element) {
-                        _this.guardarDetalle(data.info.id, element);
-                      });
+                                  case 3:
+                                    l = _context2.sent;
+                                    l.present();
+                                    this.servicio.Pedido_Guardar({
+                                      id: this.id,
+                                      cliente_id: this.cliente.id,
+                                      usuario_id: 1,
+                                      fecha: this.fecha,
+                                      estado: 0,
+                                      subtotal: this.subTotal,
+                                      iva: this.iva,
+                                      total: this.Total,
+                                      mesa: data[0]
+                                    }).subscribe(function (data) {
+                                      l.dismiss();
 
-                      _this.storage.remove('pedidos');
+                                      _this2.pedidos.forEach(function (element) {
+                                        _this2.guardarDetalle(data.info.id, element);
+                                      });
 
-                      _this.servicio.irA('/inicio-cliente');
-                    }, function (_) {
-                      l.dismiss();
+                                      _this2.storage.remove('pedidos');
 
-                      _this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+                                      _this2.servicio.irA('/inicio-cliente');
+                                    }, function (_) {
+                                      l.dismiss();
+
+                                      _this2.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+                                    });
+
+                                  case 6:
+                                  case "end":
+                                    return _context2.stop();
+                                }
+                              }
+                            }, _callee2, this);
+                          }));
+                        }
+                      }],
+                      inputs: [{
+                        id: 'mesa',
+                        type: 'number',
+                        placeholder: '# Mesa',
+                        min: 1,
+                        max: 10
+                      }]
                     });
 
-                  case 6:
+                  case 2:
+                    alert = _context3.sent;
+                    _context3.next = 5;
+                    return alert.present();
+
+                  case 5:
                   case "end":
-                    return _context2.stop();
+                    return _context3.stop();
                 }
               }
-            }, _callee2, this);
+            }, _callee3, this);
           }));
         }
       }, {
         key: "calcularTotal",
         value: function calcularTotal() {
-          var _this2 = this;
+          var _this3 = this;
 
           if (this.pedidos.length > 0) {
             this.flag = true;
             console.log(this.pedidos);
             this.subTotal = 0;
             this.pedidos.forEach(function (element) {
-              _this2.subTotal = _this2.subTotal + parseFloat(element.precio) * element.cantidad;
+              _this3.subTotal = _this3.subTotal + parseFloat(element.precio) * element.cantidad;
             });
             this.iva = this.subTotal * 0.12;
             this.Total = this.subTotal + this.iva;

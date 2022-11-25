@@ -43,7 +43,7 @@
       </ion-button>
     </ion-list>
 <br>
-    <ion-row class="header-row">
+    <ion-row class="header-row" *ngIf="pedidos.length > 0">
 
       <ion-col>
         <ion-text>Fecha</ion-text>
@@ -78,7 +78,7 @@
           </ion-text>
         </ion-col>
     </ion-row>
-    <ion-list-header color="success">
+    <ion-list-header color="success" *ngIf="pedidos.length > 0">
       <ion-grid>
         <ion-row>
           <ion-col><strong></strong></ion-col>
@@ -87,5 +87,6 @@
         </ion-row>
       </ion-grid>
     </ion-list-header>
+    <p *ngIf="pedidos.length == 0">No existen Pedidos</p>
   </ion-grid>
 </ion-content>

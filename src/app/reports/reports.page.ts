@@ -45,6 +45,7 @@ export class ReportsPage implements OnInit {
         });
         l.dismiss();
       }else{
+        this.pedidos = [];
         this.servicio.Mensaje('No hay pedidos para mostrar', 'danger');
         l.dismiss();
       }
